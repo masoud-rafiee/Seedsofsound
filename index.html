@@ -3,263 +3,858 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Seeds of Sound — Bishop’s University Computer Science Club</title>
-  <meta name="description" content="Interactive art–science installation repurposing telephones with custom electronics. Built by Bishop’s University CS Club. Showcased at the United Nations World Food Forum, Rome." />
+  <title>Seeds of Sound — Bishop's University Computer Science Club</title>
+  <meta name="description" content="Interactive art–science installation repurposing telephones with custom electronics. Built by Bishop's University CS Club. Showcased at the United Nations World Food Forum, Rome." />
   <link rel="canonical" href="https://your-domain-or-github-pages-url/" />
   <!-- Open Graph -->
-  <meta property="og:title" content="Seeds of Sound — Bishop’s University CS Club" />
+  <meta property="og:title" content="Seeds of Sound — Bishop's University CS Club" />
   <meta property="og:description" content="Interactive art–science installation repurposing telephones with custom electronics. Showcased at the United Nations World Food Forum (Rome)." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://your-domain-or-github-pages-url/assets/og-image.jpg" />
   <meta property="og:url" content="https://your-domain-or-github-pages-url/" />
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Seeds of Sound — Bishop’s University CS Club" />
+  <meta name="twitter:title" content="Seeds of Sound — Bishop's University CS Club" />
   <meta name="twitter:description" content="Interactive art–science installation repurposing telephones with custom electronics. Showcased at the United Nations World Food Forum (Rome)." />
   <meta name="twitter:image" content="https://your-domain-or-github-pages-url/assets/og-image.jpg" />
   <link rel="icon" href="/assets/favicon.svg" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Outfit:wght@100..900&display=swap');
+    
     :root {
-      --bg: #0b0b10;
-      --panel: #12121a;
-      --text: #e6e6ef;
-      --muted: #a0a3ad;
-      --brand: #7c5cff;
-      --brand-2: #38bdf8;
-      --ok: #16a34a;
-      --warn: #eab308;
-      --maxw: 1120px;
-      --radius: 18px;
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #111118;
+      --bg-glass: rgba(17, 17, 24, 0.8);
+      --surface: #1a1a24;
+      --surface-elevated: #202030;
+      --text-primary: #ffffff;
+      --text-secondary: #b8bcc8;
+      --text-muted: #6c727f;
+      --accent-primary: #6366f1;
+      --accent-secondary: #8b5cf6;
+      --accent-tertiary: #06b6d4;
+      --accent-warm: #f59e0b;
+      --success: #10b981;
+      --border: rgba(255, 255, 255, 0.1);
+      --border-strong: rgba(255, 255, 255, 0.2);
+      --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      --shadow-xl: 0 40px 80px -12px rgba(0, 0, 0, 0.8);
+      --glow: 0 0 20px rgba(99, 102, 241, 0.3);
+      --radius: 24px;
+      --radius-lg: 32px;
+      --max-width: 1200px;
     }
-    * { box-sizing: border-box }
-    html, body { height: 100% }
-    body {
-      margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, Noto Sans, sans-serif;
-      color: var(--text); background: radial-gradient(1200px 600px at 10% -10%, rgba(124,92,255,.15), transparent),
-               radial-gradient(800px 400px at 110% 20%, rgba(56,189,248,.12), transparent),
-               var(--bg);
-      line-height: 1.55;
-    }
-    a { color: #c7b8ff; text-decoration: none }
-    a:hover { text-decoration: underline }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px }
-    header { padding: 28px 0 }
-    nav { display: flex; align-items: center; justify-content: space-between; gap: 16px }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700 }
-    .badge { padding: 2px 10px; border: 1px solid #2a2a3a; border-radius: 999px; color: var(--muted); font-size: 12px }
-    .cta { display:inline-flex; align-items:center; gap:10px; padding:12px 16px; background: linear-gradient(135deg,var(--brand),var(--brand-2));
-           border:0; border-radius: 12px; color:#fff; font-weight:600; cursor:pointer }
-    .cta.secondary { background: transparent; border:1px solid #2a2a3a; color: var(--text) }
-    .hero { padding: 36px 0 28px }
-    .hero-grid { display:grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: center }
-    .hero h1 { font-size: clamp(28px, 4vw, 46px); line-height: 1.1; margin: 8px 0 10px }
-    .sub { color: var(--muted); font-size: 16px }
-    .panel { background: rgba(18,18,26,.9); border:1px solid #232338; border-radius: var(--radius); padding: 18px }
-    .hero .phone-img { width:100%; border-radius: 14px; border:1px solid #2a2a3a; background:#0f0f16; min-height: 240px;
-                        display:flex; align-items:center; justify-content:center; color:#63677a; font-size:14px }
-    .kpis { display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px }
-    .kpi { background:#0f0f16; border:1px solid #232338; border-radius:12px; padding:12px; text-align:center }
-    .kpi .t { font-size:12px; color:var(--muted) }
-    .kpi .v { font-size:18px; font-weight:700 }
-    section { padding: 24px 0 }
-    h2 { font-size: 22px; margin: 0 0 10px }
-    .cols-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px }
-    .card { background: var(--panel); border:1px solid #232338; border-radius: var(--radius); padding: 16px }
-    .credits { display:grid; grid-template-columns: 1fr 1fr; gap: 16px }
-    .credits .card { display:flex; flex-direction:column; gap:6px }
-    .muted { color: var(--muted) }
-    .gallery { display:grid; grid-template-columns: repeat(3, 1fr); gap: 10px }
-    .gallery img { width:100%; height:220px; object-fit:cover; border-radius:12px; border:1px solid #2a2a3a }
-    footer { padding: 28px 0 44px; color: var(--muted) }
 
-    @media (max-width: 920px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .cols-3 { grid-template-columns: 1fr; }
-      .credits { grid-template-columns: 1fr; }
-      .gallery { grid-template-columns: 1fr 1fr }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: 
+        radial-gradient(circle at 20% 10%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Enhanced scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 4px;
+    }
+
+    /* Smooth animations */
+    * {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Navigation */
+    .nav-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      backdrop-filter: blur(20px);
+      background: rgba(10, 10, 15, 0.8);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--text-primary);
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-icon::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+      border-radius: 14px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .brand:hover .brand-icon::before {
+      opacity: 1;
+    }
+
+    .badge {
+      padding: 8px 16px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .nav-link {
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: white;
+      box-shadow: var(--glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn-secondary {
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-strong);
+      background: var(--surface);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
+      z-index: -1;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-content {
+      animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(48px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      max-width: 600px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Hero Image */
+    .hero-image {
+      position: relative;
+      animation: slideInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+    }
+
+    .image-container {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .image-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent, var(--accent-primary), transparent);
+      animation: rotate 4s linear infinite;
+      z-index: -1;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Sections */
+    .section {
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .card {
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-primary);
+    }
+
+    .card-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(139, 92, 246, 0.8));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    /* Credits */
+    .credits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .credit-card {
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      backdrop-filter: blur(10px);
+    }
+
+    .credit-title {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .credit-description {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 60px 0 40px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-secondary);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      height: 80px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    /* Animations */
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(0.95);
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 0 20px;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero {
+        padding: 100px 0 60px;
+      }
+
+      .hero-title {
+        font-size: 40px;
+      }
+
+      .hero-subtitle {
+        font-size: 18px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .section-title {
+        font-size: 36px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    /* Links */
+    a {
+      color: var(--accent-primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "Seeds of Sound",
-    "description": "Interactive art–science installation repurposing telephones with custom electronics to play recorded voices when lifted.",
-    "creator": {
-      "@type": "Organization",
-      "name": "Bishop’s University Computer Science Club"
-    },
-    "isPartOf": {
-      "@type": "Event",
-      "name": "United Nations World Food Forum",
-      "location": { "@type": "Place", "name": "Rome" },
-      "startDate": "2025-10-01",
-      "endDate": "2025-10-31"
-    }
-  }
-  </script>
 </head>
 <body>
-  <a class="sr-only" href="#main">Skip to content</a>
-  <header>
-    <div class="wrap">
-      <nav>
-        <div class="brand">
-          <!-- Simple seed+wave icon -->
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="12" cy="12" r="10" stroke="#2f2f40" stroke-width="2" />
-            <path d="M7 13c2.5-1.5 4.5-1.5 7 0 2.5 1.5 4.5 1.5 7 0" stroke="url(#g)" stroke-width="2" fill="none" />
-            <defs>
-              <linearGradient id="g" x1="0" x2="24" y1="0" y2="24"><stop stop-color="#7c5cff"/><stop offset="1" stop-color="#38bdf8"/></linearGradient>
-            </defs>
+  <!-- Navigation -->
+  <nav class="nav-container">
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M7 13c2.5-1.5 4.5-1.5 7 0 2.5 1.5 4.5 1.5 7 0" stroke="white" stroke-width="2" fill="none"/>
+            <circle cx="12" cy="16" r="2" fill="white"/>
           </svg>
-          <span>Seeds of Sound</span>
-          <span class="badge">Bishop’s University CS Club</span>
         </div>
-        <div style="display:flex; gap:10px; align-items:center">
-          <a class="cta secondary" href="#about" aria-label="About the project">About</a>
-          <a class="cta secondary" href="#credits" aria-label="Credits">Credits</a>
-          <a class="cta" href="#contact" aria-label="Contact">Contact</a>
-        </div>
-      </nav>
+        <span>Seeds of Sound</span>
+        <div class="badge">Bishop's University CS Club</div>
+      </div>
+      <div class="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#how" class="nav-link">How it works</a>
+        <a href="#showcase" class="nav-link">Showcase</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#contact" class="btn btn-primary">Contact</a>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <main id="main" class="wrap">
-    <section class="hero">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
       <div class="hero-grid">
-        <div>
-          <div class="badge" aria-label="Showcase">Showcased at the United Nations World Food Forum · Rome</div>
-          <h1>Repurposed telephones. Custom circuits. Voices that move people.</h1>
-          <p class="sub">An interactive art–science installation that plays curated audio when you lift the handset. Built by the Bishop’s University Computer Science Club in collaboration with the Arts community.</p>
-          <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap">
-            <a class="cta" href="#how">How it works</a>
-            <a class="cta secondary" href="#press">Press kit</a>
+        <div class="hero-content">
+          <div class="hero-badge">
+            Showcased at the United Nations World Food Forum · Rome
           </div>
-
-          <div class="kpis">
-            <div class="kpi"><div class="v">5</div><div class="t">Phones retrofitted</div></div>
-            <div class="kpi"><div class="v">1</div><div class="t">UN forum showcase</div></div>
-            <div class="kpi"><div class="v"><span aria-label="year">2025</span></div><div class="t">Rome, Italy</div></div>
+          <h1 class="hero-title">Repurposed telephones. Custom circuits. Voices that move people.</h1>
+          <p class="hero-subtitle">
+            An interactive art–science installation that plays curated audio when you lift the handset. 
+            Built by the Bishop's University Computer Science Club in collaboration with the Arts community.
+          </p>
+          <div class="hero-actions">
+            <a href="#how" class="btn btn-primary">Discover How It Works</a>
+            <a href="#press" class="btn btn-secondary">Press Kit</a>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-value">5</div>
+              <div class="stat-label">Phones Retrofitted</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">1</div>
+              <div class="stat-label">UN Forum Showcase</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">2025</div>
+              <div class="stat-label">Rome, Italy</div>
+            </div>
           </div>
         </div>
-        <div class="panel">
-          <div class="phone-img" aria-label="Device photo">
-  <img src="assets/hero-phone.jpeg" alt="Modified rotary phone with visible custom electronics" style="width:100%;height:auto;border-radius:14px" />
-</div>
+        <div class="hero-image">
+          <div class="image-container">
+            <img src="assets/hero-phone.jpeg" alt="Modified rotary phone with visible custom electronics" />
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="about">
-      <h2>About the installation</h2>
-      <p>
-        <strong>Seeds of Sound</strong> transforms obsolete telephones into interactive story devices. When a visitor lifts the handset,
-        embedded electronics trigger curated recordings — personal voices, science narratives, and podcast excerpts — to explore how
-        technology and art can deepen public engagement.
-      </p>
-    </section>
-
-    <section id="how">
-      <h2>How it works</h2>
-      <div class="cols-3">
-        <div class="card">
-          <h3 style="margin:0 0 6px">Repurposed hardware</h3>
-          <p class="muted">Legacy rotary and feature phones are refurbished and structurally adapted for safe, public interaction.</p>
-        </div>
-        <div class="card">
-          <h3 style="margin:0 0 6px">Custom electronics</h3>
-          <p class="muted">Embedded boards detect handset lift and play preloaded audio with reliable power and amplification.</p>
-        </div>
-        <div class="card">
-          <h3 style="margin:0 0 6px">Curated audio</h3>
-          <p class="muted">Each phone delivers a distinct voice track — from podcasts to personal stories — inviting reflection and dialogue.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="showcase">
-      <h2>Showcase</h2>
-      <div class="card">
-        <p><strong>United Nations World Food Forum</strong> · Rome, October 2025. Presented on behalf of Bishop’s University. The installation forms part of a broader conversation on sustainability, innovation, and public engagement through art and technology.</p>
-      </div>
-    </section>
-
-    <section id="credits">
-      <h2>Credits</h2>
-      <div class="credits">
-        <div class="card">
-          <strong>Bishop’s University Computer Science Club</strong>
-          <span class="muted">Contributors: Masoud Rafiee, Hugo Zamora Zorrilla, Ineza Bonté, Umba Lubembele, Daniel Anastasio Carone, Imen Djendli | Electronics engineering · Firmware & system integration</span>
-        </div>
-        <div class="card">
-          <strong>Arts Collaboration</strong>
-          <span class="muted">Concept & curatorial direction (add artist name)</span>
-        </div>
-        <div class="card">
-          <strong>Presenter</strong>
-          <span class="muted">Dr. Vivian Valencia (Bishop’s University)</span>
-        </div>
-        <div class="card">
-          <strong>Institutional Support</strong>
-          <span class="muted">Bishop’s University</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="press">
-      <h2>Press kit</h2>
-      <div class="card">
-        <p class="muted">Download high‑res photos, a 75‑word blurb, and a one‑page PDF overview.</p>
-        <p style="display:flex; gap:10px; flex-wrap:wrap">
-          <a class="cta" href="assets/press-kit.zip">Download press kit</a>
-          <a class="cta secondary" href="assets/one-pager.pdf">One‑pager (PDF)</a>
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">About the Installation</h2>
+        <p class="section-subtitle">
+          Seeds of Sound transforms obsolete telephones into interactive story devices. 
+          When a visitor lifts the handset, embedded electronics trigger curated recordings — 
+          personal voices, science narratives, and podcast excerpts.
         </p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="gallery">
-      <h2>Gallery</h2>
-      <div class="gallery">
-  <img src="assets/hero-phone.jpeg" alt="Rotary phone with custom electronics" />
-  <img src="assets/wiring3.jpeg" alt="Hands working on phone wiring and electronics" />
-  <img src="assets/onCampus.jpeg" alt="Installation phone on pedestal with plaque" />
-  <img src="assets/team.jpeg" alt="Bishop's University Computer Science Club team" />
-  <img src="assets/wiring1.jpeg" alt="Close-up wiring detail inside handset" />
-  <img src="assets/wiring2.jpeg" alt="Team collaborating on electronics at table" />
-  <img src="assets/wiring4.jpg" alt="Testing audio playback with handset" />
-  <img src="assets/onCampus2.jpeg" alt="Plaque close-up for Seeds of Sound" />
-</div>
-</section>
+  <!-- How It Works Section -->
+  <section id="how" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">
+          Three key components work together to create an immersive audio experience
+        </p>
+      </div>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-width="2"/>
+              <path d="M9 9h6v6H9z" fill="white"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Repurposed Hardware</h3>
+          <p class="card-description">
+            Legacy rotary and feature phones are refurbished and structurally adapted 
+            for safe, public interaction with modern electronics.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="white" stroke-width="2" fill="none"/>
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Custom Electronics</h3>
+          <p class="card-description">
+            Embedded boards detect handset lift and play preloaded audio with 
+            reliable power management and high-quality amplification.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18V5l12-2v13" stroke="white" stroke-width="2" fill="none"/>
+              <circle cx="6" cy="18" r="3" stroke="white" stroke-width="2" fill="none"/>
+              <circle cx="18" cy="16" r="3" stroke="white" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="card-title">Curated Audio</h3>
+          <p class="card-description">
+            Each phone delivers a distinct voice track — from podcasts to personal stories — 
+            inviting reflection and meaningful dialogue.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="card">
+  <!-- Showcase Section -->
+  <section id="showcase" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">United Nations Showcase</h2>
+      </div>
+      <div class="card" style="max-width: 800px; margin: 0 auto;">
         <p>
-          Email: <a href="mailto:mrafiee22@ubishops.ca">mrafiee22@ubishops.ca</a>
-          &nbsp;|&nbsp; LinkedIn: <a href="https://www.linkedin.com/in/masoud-rafiee" target="_blank" rel="noopener">masoud-rafiee</a>
-          &nbsp;|&nbsp; GitHub: <a href="https://github.com/Masoud-rafiee" target="_blank" rel="noopener">Masoud-rafiee</a>
+          <strong>United Nations World Food Forum</strong> · Rome, October 2025. 
+          Presented on behalf of Bishop's University. The installation forms part of a broader 
+          conversation on sustainability, innovation, and public engagement through art and technology.
         </p>
-        <p class="muted">For media or collaboration inquiries, include “Seeds of Sound” in the subject line.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
-        <span>© <span id="y"></span> Bishop’s University Computer Science Club</span>
-        <span>·</span>
-        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top</a>
       </div>
     </div>
- <div class="logo">
-        <img src="assets/Logo.jpeg" alt="CS Club Logo" style="height:80px; margin-top:15px;">
-    </div>
-  </footer>
+  </section>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+  <!-- Gallery Section -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Gallery</h2>
+        <p class="section-subtitle">Behind the scenes and installation moments</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="assets/hero-phone.jpeg" alt="Rotary phone with custom electronics" />
+          <div class="gallery-overlay">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            </svg>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/wiring3.jpeg" alt="Hands working on phone wiring and electronics" />
+          <div class="gallery-overlay">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            </svg>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/onCampus.jpeg" alt="Installation phone on pedestal with plaque" />
+          <div class="gallery-overlay">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            </svg>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/team.jpeg" alt="Bishop's University Computer Science Club team" />
+          <div class="gallery-overlay">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+            </svg>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/wiring1.jpeg" alt="Close-up wiring detail inside handset" />
+          <div class="gallery-overlay">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
