@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Seeds of Sound Installation</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="Logo.jpeg" />
+  </head>
+  <body>
+    <!-- Navigation bar reused across pages -->
+    <header class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <img src="Logo.jpeg" alt="Bishop's Computer Science Club logo" />
+        </a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <nav>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="seeds.html" class="active">Seeds of Sound</a></li>
+            <li><a href="first-supper.html">First Supper</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <button id="theme-toggle" aria-label="Toggle dark mode" class="theme-toggle">🌙</button>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+        </label>
+      </div>
+    </header>
+
+    <!-- Page hero -->
+    <section class="page-hero seeds-hero">
+      <video class="hero-bg" src="seeds-hero.mp4" autoplay muted loop playsinline preload="auto" poster="hero-phone.jpeg"></video>
+      <img
+        src="hero-phone.jpeg"
+        alt="Seeds of Sound hero image"
+        class="page-hero-img"
+      />
+      <div class="hero-overlay"></div>
+      <div class="page-hero-content container">
+        <h1>Seeds of Sound</h1>
+        <p class="tagline">A voice harvesting installation</p>
+      </div>
+    </section>
+
+    <main>
+      <!-- Introduction -->
+      <section class="section-intro container">
+        <h2>Pick up the archive</h2>
+        <p>
+          <strong>Seeds of Sound</strong> invites you to experience a living
+          archive of voices. Lift the receiver of a seemingly ordinary
+          rotary telephone and be transported into the stories, questions and
+          reflections of students, athletes, farmers and dreamers. Each call
+          reveals a different voice from our ever‑growing library of recordings,
+          reminding us that our food system is built on countless
+          perspectives.
+        </p>
+        <div class="image-grid">
+          <img src="invest-1.png" alt="Invest in the voice of tomorrow poster">
+          <img src="placard-illustration.png" alt="Seeds of Sound placard illustration">
+          <img src="visitor-phone.png" alt="Visitor picking up the archive phone">
+        </div>
+
+        <p>
+          Our goal is simple: to create an evocative installation where
+          participants can literally <em>pick up the archive</em>. Through this
+          tactile act we reconnect with one another’s experiences and invite
+          visitors to imagine how their own actions shape our collective
+          future.
+        </p>
+      </section>
+
+      <!-- Features grid -->
+      <section class="section-features">
+        <div class="container">
+          <h2>How it works</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Vintage meets Digital</h3>
+              <p>
+                Housed in a real rotary or feature phone, our installation
+                preserves the authenticity of a bygone era. Inside, a
+                Raspberry&nbsp;Pi orchestrates high‑fidelity audio playback using
+                a DAC and amplifier. The result: clean, CD‑quality sound
+                through an original handset.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Randomized Playback</h3>
+              <p>
+                When the handset is lifted, a reed switch triggers the Pi to
+                randomly select and play an audio file from our archive. Hang
+                up and the current track stops; pick up again and a new voice
+                awaits. There’s no predictable order—just serendipity.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Seamless Experience</h3>
+              <p>
+                Our lightweight Python script runs headlessly on the
+                Raspberry&nbsp;Pi. It monitors the hook switch, manages audio
+                processes and ensures smooth playback without lag or skipping.
+                All electronics are hidden inside the phone’s shell for a
+                flawless exhibit experience.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Analog &amp; Digital Growth</h3>
+              <p>
+                Visitors can also write reflections in an artist‑made book
+                crafted from recycled paper pulp and embedded with seeds. These
+                pages can later be planted, turning words into living plants
+                and symbolizing the growth that emerges when we share our
+                stories.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery -->
+      <section class="section-gallery">
+        <div class="container">
+          <h2>Behind the scenes</h2>
+          <p>
+            A group of passionate students from the Bishop’s University
+            Computer Science Club carefully disassembled vintage phones,
+            tested speakers, soldered connections and coded the playback
+            logic. Here’s a glimpse into their workshop:
+          </p>
+          <div class="gallery-grid">
+            <figure class="gallery-item">
+              <img src="wiring1.jpeg" alt="Testing handset speaker with probes" />
+              <figcaption>Speaker testing</figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="wiring2.jpeg" alt="Students collaborating on wiring" />
+              <figcaption>Collaborative wiring</figcaption>
+            </figure>
+            <figure class="gallery-item">
+              <img src="wiring3.jpeg" alt="Programming the internals" />
+              <figcaption>Programming internals</figcaption>
+            </figure>
+              <figure class="card">
+              <img src="table-arc.png" alt="The First Supper table arc concept">
+              <figcaption>Exhibition table arc concept</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical details -->
+      <section class="section-technical">
+        <div class="container">
+          <h2>Technical blueprint</h2>
+          <p>
+            At its core, the installation pairs high‑quality hardware with
+            straightforward open‑source software. Here’s an overview of the
+            system design distilled from our build guide:
+          </p>
+          <div class="tech-grid">
+            <div class="tech-item">
+              <h4>Hardware</h4>
+              <ul>
+                <li>Vintage rotary or feature phone shell &amp; handset</li>
+                <li>Raspberry&nbsp;Pi&nbsp;Zero&nbsp;2&nbsp;W with I²S DAC HAT</li>
+                <li>Class‑10 microSD card with Raspberry Pi OS Lite</li>
+                <li>PAM8403 amplifier driving an 8Ω handset speaker</li>
+                <li>Magnetic reed switch to detect on/off hook</li>
+              </ul>
+            </div>
+            <div class="tech-item">
+              <h4>Software</h4>
+              <ul>
+                <li>Python script monitors GPIO hook pin</li>
+                <li>Randomly selects and plays WAV/MP3 files</li>
+                <li>Uses <code>mpg123</code> for efficient playback</li>
+                <li>Stops instantly on hang‑up</li>
+                <li>Runs on boot via systemd for reliability</li>
+              </ul>
+            </div>
+            <div class="tech-item">
+              <h4>Assembly Tips</h4>
+              <ul>
+                <li>Test the original speaker and replace if weak or muffled</li>
+                <li>Use a DAC rather than the Pi’s headphone jack for clean audio</li>
+                <li>Secure all components inside the phone base for robustness</li>
+                <li>Stress‑test with long tracks and frequent pick‑ups</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline -->
+      <section class="section-timeline">
+        <div class="container">
+          <h2>Project timeline</h2>
+          <div class="timeline">
+            <div class="timeline-event">
+              <div class="timeline-date">Sept&nbsp;18</div>
+              <div class="timeline-content">
+                <h4>Define specifications</h4>
+                <p>Finalize technical specs and assign responsibilities.</p>
+              </div>
+            </div>
+            <div class="timeline-event">
+              <div class="timeline-date">Sept&nbsp;25</div>
+              <div class="timeline-content">
+                <h4>Prototype testing</h4>
+                <p>Integrate the phone, Pi and audio files for live tests.</p>
+              </div>
+            </div>
+            <div class="timeline-event">
+              <div class="timeline-date">Oct&nbsp;5</div>
+              <div class="timeline-content">
+                <h4>Final review</h4>
+                <p>Package the finished installation and document the process.</p>
+              </div>
+            </div>
+            <div class="timeline-event">
+              <div class="timeline-date">Oct&nbsp;10</div>
+              <div class="timeline-content">
+                <h4>Launch at WFF</h4>
+                <p>Ship the installation from Montreal to Rome for the World Food Forum.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to action -->
+      <section class="cta-section">
+        <div class="container cta-content">
+          <h2>Bring the harvest to your community</h2>
+          <p>
+            Seeds of Sound is designed to be replicated and adapted. If you’re
+            interested in commissioning an installation, partnering on
+            research or supporting our work, we’d love to hear from you.
+          </p>
+          <a href="#contact" class="btn primary">Contact Us</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer reused from index -->
+    <footer id="contact">
+      <div class="container footer-content">
+        <div class="footer-col">
+          <h3>Contact Us</h3>
+          <img src="Logo.jpeg" alt="Bishop’s CS Club" class="footer-logo">
+          <p>Bishop’s University<br>Computer Science Club<br>2600 College Street, Sherbrooke, QC<br>Canada</p>
+          <p>Email: <a href="mailto:csclub@ubishops.ca">csclub@ubishops.ca</a></p>
+          <p>
+            <a class="social-link" href="https://www.linkedin.com/company/bu-csc" target="_blank" rel="noopener">
+              <!-- LinkedIn icon (inline SVG) -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:-3px;margin-right:8px">
+                <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zM8 8.5h3.8v2h.05c.53-1 1.82-2.05 3.75-2.05C19.9 8.45 23 10.6 23 15.1V23h-4v-7c0-1.67-.03-3.82-2.33-3.82-2.33 0-2.69 1.82-2.69 3.7V23h-4V8.5z"/>
+              </svg>
+              LinkedIn
+            </a>
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3>Learn More</h3>
+          <ul>
+            <li><a href="seeds.html">Seeds of Sound</a></li>
+            <li><a href="first-supper.html">The First Supper</a></li>
+            <li><a href="team.html">The Team</a></li>
+          </ul>
+        </div>
+         <div class="footer-col">
+          <h3>Credits</h3>
+          <p>This project is made possible through collaboration across disciplines at Bishop’s University.</p>
+          <p><strong>CS CLUB MEMBERS and contributors:</strong> Masoud Rafiee, Daniel Anastasio Carone, Umba Lubembele, Hugo Erick Zamora Zorrila, Ineza Bonte Grevy.</p>
+          <p><strong>Art Department Collaborators:</strong> Imen Djendli, Dr. Vivian Valencia.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Seeds of Sound &mdash; Bishop’s University. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
