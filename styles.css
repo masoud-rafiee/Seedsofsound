@@ -25,14 +25,16 @@ body {
 
 /* Colour palette */
 :root {
-  --primary: #5f3dc4; /* rich purple */
+  --primary: #5f3dc4;
   --primary-dark: #452685;
-  --accent: #8bc34a; /* fresh green */
+  --accent: #8bc34a;
   --neutral-light: #f9f9fb;
   --neutral: #ecebed;
   --neutral-dark: #2b263b;
   --footer-bg: #1e1b2e;
   --max-width: 1200px;
+  --shadow: 0 10px 30px rgba(0,0,0,.08); /* ✅ add this */
+}
 }
 
 /* Containers */
@@ -63,11 +65,11 @@ body {
   margin: 0 auto;
   padding: 0.5rem 1rem;
 }
-
-.logo img {
-  height: 50px;
-  width: auto;
+.logo img { height: 64px; width: auto; }   /* bigger on desktop */
+@media (max-width: 640px){
+  .logo img { height: 40px; }              /* slightly smaller on phones */
 }
+
 
 nav {
   /* default nav style; hidden on small screens via media query */
@@ -180,7 +182,19 @@ nav {
   color: #fff;
   text-align: center;
 }
-
+.hero-bg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(.6);
+}
+.page-hero .hero-bg{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; filter:brightness(.6);
+}
 .hero-img {
   position: absolute;
   top: 0;
@@ -190,6 +204,7 @@ nav {
   object-fit: cover;
   filter: brightness(0.5);
 }
+
 
 .hero-overlay {
   position: absolute;
@@ -394,6 +409,18 @@ p {
   gap: 1.5rem;
   margin-top: 1rem;
 }
+/* Generic image grid (used on Home + Seeds sections we added) */
+.image-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-top:16px;
+}
+.image-grid img{
+  width:100%;
+  border-radius:16px;
+  box-shadow:var(--shadow);
+}
 
 .gallery-item {
   border-radius: 8px;
@@ -588,6 +615,8 @@ footer {
   padding-top: 2rem;
   margin-top: 4rem;
 }
+.footer-logo { height: 48px; margin: 0 0 8px; display: block; }
+
 
 .footer-content {
   display: grid;
@@ -687,4 +716,24 @@ footer {
   .page-hero-content .tagline {
     font-size: 1rem;
   }
+}
+/* Dark mode variable overrides */
+body[data-theme="dark"]{
+  --bg:#0f1020;
+  --text:#e7e7ee;
+  --muted:#b8b8c7;
+  --surface:#16182a;
+  --card:#121527;
+  --shadow:0 10px 30px rgba(0,0,0,.55);
+}
+
+/* Toggle button */
+.theme-toggle{
+  border:1px solid rgba(255,255,255,.25);
+  background:transparent;
+  color:var(--text);
+  padding:.45rem .6rem;
+  border-radius:12px;
+  cursor:pointer;
+  margin-left:.75rem;
 }
