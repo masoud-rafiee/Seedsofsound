@@ -27,6 +27,7 @@
             <li><a href="team.html">Team</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
+          <button id="theme-toggle" aria-label="Toggle dark mode" class="theme-toggle">🌙</button>
         </nav>
         <label for="nav-toggle" class="nav-toggle-label">
           <span></span>
@@ -34,28 +35,32 @@
       </div>
     </header>
 
-    <!-- Hero section -->
-    <section class="hero" id="home">
-      <img
-        src="hero-phone.jpeg"
-        alt="Vintage phone transformed into audio installation"
-        class="hero-img"
-      />
-      <div class="hero-overlay"></div>
-      <div class="hero-content container">
-        <h1>Seeds of&nbsp;Sound</h1>
-        <p class="tagline">
-          Harvesting voices and imaginations to cultivate sustainable food
-          futures.
-        </p>
-        <div class="hero-buttons">
-          <a href="seeds.html" class="btn primary">Explore the Installation</a>
-          <a href="first-supper.html" class="btn secondary"
-            >Learn About The First Supper</a
-          >
-        </div>
+  <section class="hero" id="home">
+    <!-- ✅ background video goes first -->
+    <video class="hero-bg" src="hero.mp4" autoplay muted loop playsinline preload="auto" poster="hero-phone.jpeg"></video>
+
+    <!-- existing static hero image (kept as a fallback) -->
+    <img
+      src="hero-phone.jpeg"
+      alt="Vintage phone transformed into audio installation"
+      class="hero-img"
+    />
+
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <h1>Seeds of&nbsp;Sound</h1>
+      <p class="tagline">
+        Harvesting voices and imaginations to cultivate sustainable food
+        futures.
+      </p>
+      <div class="hero-buttons">
+        <a href="seeds.html" class="btn primary">Explore the Installation</a>
+        <a href="first-supper.html" class="btn secondary">
+          Learn About The First Supper
+        </a>
       </div>
-    </section>
+    </div>
+  </section>
 
     <!-- About / Story section -->
     <main>
@@ -112,7 +117,17 @@
           </div>
         </div>
       </section>
-
+      <section class="gallery-band">
+        <div class="container">
+          <div class="image-grid">
+            <img src="booth-fao.png" alt="FAO booth concept">
+            <img src="pledge-desk-1.png" alt="Pledge desk with seed notes">
+            <img src="pledge-notes.png" alt="Pledge notes wall">
+            <img src="invest-2.png" alt="Seeds of Sound investor poster">
+          </div>
+        </div>
+      </section>
+      .gallery-band{ padding:40px 0; }
       <!-- Call to action section -->
       <section class="cta-section" id="join">
         <div class="container cta-content">
@@ -131,15 +146,20 @@
     <!-- Footer / Contact section -->
     <footer id="contact">
       <div class="container footer-content">
-        <div class="footer-col">
+       <div class="footer-col">
           <h3>Contact Us</h3>
-          <p>
-            Bishop’s University<br />
-            Computer Science Club<br />
-            2600 College Street, Sherbrooke, QC<br />
-            Canada
-          </p>
+          <img src="Logo.jpeg" alt="Bishop’s CS Club" class="footer-logo">
+          <p>Bishop’s University<br>Computer Science Club<br>2600 College Street, Sherbrooke, QC<br>Canada</p>
           <p>Email: <a href="mailto:csclub@ubishops.ca">csclub@ubishops.ca</a></p>
+          <p>
+            <a class="social-link" href="https://www.linkedin.com/company/bu-csc" target="_blank" rel="noopener">
+              <!-- LinkedIn icon (inline SVG) -->
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:-3px;margin-right:8px">
+                <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zM8 8.5h3.8v2h.05c.53-1 1.82-2.05 3.75-2.05C19.9 8.45 23 10.6 23 15.1V23h-4v-7c0-1.67-.03-3.82-2.33-3.82-2.33 0-2.69 1.82-2.69 3.7V23h-4V8.5z"/>
+              </svg>
+              LinkedIn
+            </a>
+          </p>
         </div>
         <div class="footer-col">
           <h3>Learn More</h3>
@@ -151,12 +171,9 @@
         </div>
         <div class="footer-col">
           <h3>Credits</h3>
-          <p>
-            This project is made possible through the collaboration of
-            students and faculty across disciplines at Bishop’s University.
-            Special thanks to the World Food Forum for the opportunity to
-            showcase our work.
-          </p>
+          <p>This project is made possible through collaboration across disciplines at Bishop’s University.</p>
+          <p><strong>CS CLUB MEMBERS and contributors:</strong> Masoud Rafiee, Daniel Anastasio Carone, Umba Lubembele, Hugo Erick Zamora Zorrila, Ineza Bonte Grevy.</p>
+          <p><strong>Art Department Collaborators:</strong> Imen Djendli, Dr. Vivian Valencia.</p>
         </div>
       </div>
       <div class="footer-bottom">
