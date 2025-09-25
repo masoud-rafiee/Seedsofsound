@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Seeds of Sound Installation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="logo">
+        <a href="index.html"
+          ><img src="images/Logo2.jpeg" alt="Bishop's CS Club logo"
+        /></a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="seeds.html">Seeds of Sound</a>
+        <a href="tech.html">Build Guide</a>
+        <a href="firstsupper.html">The First Supper</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
+        <a href="" class="btn">Donate</a>
+      </div>
+      <button id="dark-toggle" class="dark-toggle">Dark Mode</button>
+    </nav>
+
+    <!-- Hero section for Seeds of Sound page -->
+    <section class="hero">
+      <!-- Placeholder video for Seeds of Sound; replace seeds.mp4 with final clip -->
+      <video src="videos/seeds.mp4" autoplay loop muted playsinline poster="images/wiring2.jpeg"></video>
+      <div class="overlay">
+        <h1>Seeds of Sound Installation</h1>
+        <p>
+          An evocative archive of voices and memories housed within a
+          repurposed rotary phone.
+        </p>
+      </div>
+    </section>
+
+    <!-- Installation Details -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Installation Overview</h2>
+        <p>
+          Seeds of Sound invites visitors to “pick up the archive” of
+          collective voices, memories and food reflections. This interactive
+          sculpture uses a vintage rotary phone connected to a Raspberry Pi
+          to play random recordings from our community archive. The
+          technology is hidden inside the telephone, preserving its
+          nostalgia while delivering crisp, high‑fidelity sound.
+        </p>
+      </div>
+    </section>
+
+    <!-- Hardware Setup Section -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Hardware Setup</h2>
+        <ul>
+          <li>Vintage rotary telephone wired to a Raspberry Pi.</li>
+          <li>Audio archive stored on a microSD card (WAV/MP3).</li>
+          <li>High‑quality DAC and amplifier driving the handset speaker.</li>
+          <li>Hook switch sensor detects when the receiver is lifted.</li>
+          <li>Discreet power supply or optional battery pack.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Functionality Section -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Functionality</h2>
+        <ul>
+          <li>
+            When the receiver is picked up, the Raspberry Pi randomly plays
+            one audio file from the archive.
+          </li>
+          <li>Recordings loop in a new randomized order with each interaction.</li>
+          <li>Listening only – no recording feature for participants.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Analog Installation Section -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Analog Reflection</h2>
+        <p>
+          Beside the phone sits a handmade book crafted from recycled paper
+          pulp embedded with seeds. Visitors can handwrite their
+          reflections, memories or pledges about food futures. Once
+          the exhibition concludes, these pages can be planted, turning
+          words into living growth – a poetic metaphor for the futures we
+          nurture together.
+        </p>
+      </div>
+    </section>
+
+    <!-- Technical Needs Section -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Technical Needs</h2>
+        <ul>
+          <li>Programming to handle random playback from the audio folder.</li>
+          <li>Conversion and optimization of audio files for smooth playback.</li>
+          <li>Hardware integration of the phone receiver as a trigger input.</li>
+          <li>Potential battery power option instead of electrical plug.</li>
+          <li>Rigorous testing to ensure reliability during continuous use.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Timeline</h2>
+        <ul class="timeline">
+          <li><strong>September 18:</strong> Finalize technical specs and assign responsibilities.</li>
+          <li><strong>September 25:</strong> Prototype testing – Raspberry Pi setup.</li>
+          <li><strong>October 5:</strong> Final review and packaging for transport to Rome.</li>
+          <li><strong>October 10:</strong> Launch from YUL to WFF.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Deliverables Section -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Deliverables</h2>
+        <ul>
+          <li>
+            A fully programmed Raspberry Pi and rotary phone audio player
+            ready for exhibition.
+          </li>
+          <li>Visually appealing final product with concealed electronics.</li>
+          <li>Documentation detailing setup and troubleshooting.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Prototyping &amp; Testing</h2>
+        <div class="gallery">
+          <img src="images/wiring1.jpeg" alt="Wiring close‑up with probes" />
+          <img src="images/wiring2.jpeg" alt="Team working on the phone" />
+          <img src="images/wiring3.jpeg" alt="Hardware prototyping" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+        &copy; 2025 Bishop's University Computer Science Club. All rights
+        reserved.
+      </p>
+      <p>
+        CS Club members and contributors: Masoud Rafiee, Daniel Anastasio
+        Carone, Umba Lubembele, Hugo Erick Zamora Zorrila, Ineza Bonte
+        Grevy. Art Department collaborators: Imen Djendli, Dr. Vivian
+        Valencia.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Build Guide | Seeds of Sound</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="logo">
+        <a href="index.html"><img src="images/Logo2.jpeg" alt="Bishop's CS Club logo" /></a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="seeds.html">Seeds of Sound</a>
+        <a href="tech.html">Build Guide</a>
+        <a href="firstsupper.html">The First Supper</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
+        <a href="" class="btn">Donate</a>
+      </div>
+      <button id="dark-toggle" class="dark-toggle">Dark Mode</button>
+    </nav>
+
+    <!-- Header -->
+    <section class="hero">
+      <video src="videos/hero.mp4" autoplay loop muted playsinline poster="images/hero-phone.jpeg"></video>
+      <div class="overlay">
+        <h1>Build Guide</h1>
+        <p>
+          A step‑by‑step overview of the hardware, wiring and software
+          powering the Seeds of Sound installation.
+        </p>
+      </div>
+    </section>
+
+    <!-- Core Requirements -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Core Requirements</h2>
+        <ul>
+          <li>A vintage rotary or feature phone (only the casing and handset are needed).</li>
+          <li>Ability to play at least 10 minutes of audio in high quality (44.1 kHz/16‑bit).</li>
+          <li>Playback must stop when the handset is replaced and resume with a new random track when lifted.</li>
+          <li>All components should be durable and neatly fitted for multi‑day exhibitions.</li>
+          <li>Test the original handset speaker; replace with an 8 Ω speaker if necessary.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Hardware Components -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Hardware Components</h2>
+        <h3>Phone &amp; Mechanical</h3>
+        <ul>
+          <li>Vintage rotary or feature phone with sturdy shell.</li>
+          <li>Original handset with speaker and microphone (microphone kept for authenticity).</li>
+        </ul>
+        <h3>Control &amp; Playback</h3>
+        <ul>
+          <li>Raspberry Pi Zero 2 W or Pi 3A+ (depending on power needs).</li>
+          <li>MicroSD card (16–32 GB) to store the OS and audio files.</li>
+          <li>Reliable 5 V/2 A USB power supply.</li>
+        </ul>
+        <h3>Audio Chain</h3>
+        <ul>
+          <li>I²S DAC HAT (e.g. MAX98357A or HiFiBerry DAC Zero) for clean output.</li>
+          <li>PAM8403 or MAX98357A amplifier to drive the 8 Ω handset speaker.</li>
+        </ul>
+        <h3>Switching &amp; Control</h3>
+        <ul>
+          <li>Magnetic reed switch or microswitch to detect off‑hook state.</li>
+          <li>GPIO breakout wires and resistors (10 kΩ pull‑down).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Wiring &amp; Assembly -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Wiring &amp; Assembly</h2>
+        <p>Follow these high‑level steps to assemble the phone:</p>
+        <ul>
+          <li>Disassemble the phone, removing the old dial mechanism if extra space is needed.</li>
+          <li>Identify the hook switch terminals that open and close with the handset.</li>
+          <li>Test the handset speaker with a multimeter (≈8 Ω) and small amp; replace if needed.</li>
+          <li>Install the reed or microswitch so that it closes the circuit when the handset is lifted; connect one side to a GPIO pin and the other to ground with a 10 kΩ pull‑down resistor.</li>
+          <li>Connect the Pi’s I²S pins to the DAC HAT, then to the amplifier and handset speaker.</li>
+          <li>Power the Pi and amplifier from the same 5 V source; hide all components inside the phone base.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Software Setup -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Software &amp; Control Script</h2>
+        <p>
+          Start with Raspberry Pi OS Lite and enable SSH for headless configuration. Install
+          audio tools and Python libraries:
+        </p>
+        <pre><code>sudo apt update &amp;&amp; sudo apt upgrade
+sudo apt install mpg123 python3-pip
+pip3 install pygame RPi.GPIO</code></pre>
+        <p>
+          Store your audio files in <code>/home/pi/audio/</code>. The Python script below illustrates
+          the core logic for random playback and hook‑switch detection:
+        </p>
+        <pre><code>import os, random, signal, time
+import subprocess
+import RPi.GPIO as GPIO
+
+HOOK_PIN = 18
+AUDIO_DIR = "/home/pi/audio/"
+current_process = None
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(HOOK_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+def play_random_audio():
+    global current_process
+    file = random.choice(os.listdir(AUDIO_DIR))
+    path = os.path.join(AUDIO_DIR, file)
+    current_process = subprocess.Popen(["mpg123", path])
+
+def stop_audio():
+    global current_process
+    if current_process:
+        current_process.send_signal(signal.SIGTERM)
+        current_process = None
+
+try:
+    while True:
+        if GPIO.input(HOOK_PIN):
+            if not current_process:
+                play_random_audio()
+        else:
+            stop_audio()
+        time.sleep(0.2)
+except KeyboardInterrupt:
+    GPIO.cleanup()</code></pre>
+        <p>
+          Enable your script to run on boot using systemd for reliable,
+          multi‑day exhibition use. Thoroughly test audio playback, hook
+          detection and stress‑test multiple lift/hang cycles.
+        </p>
+      </div>
+    </section>
+
+    <!-- Presentation Polish -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Presentation &amp; Finishing Touches</h2>
+        <ul>
+          <li>Mount the Pi and amplifier securely inside the phone with 3D‑printed brackets or hot glue.</li>
+          <li>Keep the original dial and keys intact for authenticity.</li>
+          <li>Add a small label plate or QR code that links visitors to this website or a build guide.</li>
+          <li>Stress‑test playback with ≥10 minute tracks to ensure smooth operation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+        &copy; 2025 Bishop's University Computer Science Club. All rights
+        reserved.
+      </p>
+      <p>
+        CS Club members and contributors: Masoud Rafiee, Daniel Anastasio
+        Carone, Umba Lubembele, Hugo Erick Zamora Zorrila, Ineza Bonte
+        Grevy. Art Department collaborators: Imen Djendli, Dr. Vivian
+        Valencia.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
