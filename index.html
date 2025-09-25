@@ -110,6 +110,7 @@
     </section>
 
       <!-- Call to Action Section -->
+    <!--
       <section class="cta">
         <div class="container">
           <h2>Support Our Mission</h2>
@@ -131,7 +132,179 @@
           <a href="contact.html" class="btn-primary">Get in Touch</a>
         </div>
       </section>
-
+            <!-- Call to Action Section -->
+        <section class="cta neo-cta">
+          <div class="cta-bg">
+            <span class="grid"></span>
+            <span class="orb orb-1"></span>
+            <span class="orb orb-2"></span>
+          </div>
+        
+          <div class="container cta-card">
+            <h2 class="cta-title">Support Our Mission</h2>
+            <p class="cta-copy">
+              💡 Why Your Support Matters
+                Your support helps us sustain and scale Seeds of Sound — an installation that transforms vintage telephones into living archives of voices, memories, and ideas.
+                But this is only the beginning. The same team is actively prototyping IoT systems, AI tools, robotics, solar technologies, and brain–computer interfaces. Backing this initiative means fueling a pipeline of breakthrough projects that merge creativity with engineering and sustainability.
+                Together, we can:
+                Bring these technologies to new audiences — from local communities to global forums.
+                Expand our archive of voices, making innovation participatory and human-centered.
+                Build partnerships with accelerators, incubators, companies, and research labs who are ready to collaborate on the next frontier.
+                By joining us, you don’t just support an art piece — you invest in a new generation of innovators who are bridging science, design, and social impact.
+            </p>
+            <a class="cta-btn" href="contact.html" aria-label="Go to Contact page">Contact</a>
+          </div>
+        </section>
+        
+        <style>
+        /* ===== Futuristic CTA ===== */
+        :root{
+          --bg0:#070a12;
+          --bg1:#0b1220;
+          --neon:#7cf4ff;
+          --iris:#6a5cff;
+          --fuchsia:#e24bff;
+          --card:#0f172aee;
+          --text:#e6ebff;
+          --muted:#b6c2ffb3;
+        }
+        
+        .neo-cta{
+          position: relative;
+          overflow: hidden;
+          padding: clamp(4rem, 8vw, 8rem) 1.25rem;
+          background: radial-gradient(1200px 600px at 80% -10%, #123, transparent 60%),
+                      radial-gradient(900px 500px at -10% 120%, #211238, transparent 55%),
+                      linear-gradient(180deg, var(--bg0), var(--bg1));
+          isolation: isolate;
+        }
+        
+        .cta-bg{
+          position:absolute; inset:0; pointer-events:none; z-index:0;
+        }
+        
+        .cta-bg .grid{
+          position:absolute; inset:-200%;
+          background:
+            linear-gradient(transparent 98%, #ffffff0d 0) 0 0/2rem 2rem,
+            linear-gradient(90deg, transparent 98%, #ffffff0d 0) 0 0/2rem 2rem;
+          mask: radial-gradient(60% 60% at 50% 50%, #000 40%, transparent);
+          animation: drift 22s linear infinite;
+          opacity:.35;
+          filter: drop-shadow(0 0 6px #ffffff10);
+        }
+        
+        @keyframes drift{
+          to{ transform: translate3d(-2rem,-2rem,0); }
+        }
+        
+        .orb{
+          position:absolute;
+          width:42vmax; height:42vmax; border-radius:50%;
+          background: radial-gradient(circle at 30% 30%, var(--neon), transparent 55%),
+                      radial-gradient(circle at 70% 70%, var(--fuchsia), transparent 60%);
+          filter: blur(40px) saturate(120%);
+          mix-blend-mode: screen; opacity:.18;
+          animation: float 14s ease-in-out infinite;
+        }
+        .orb-1{ top:-20%; left:-10%; }
+        .orb-2{ bottom:-30%; right:-15%; animation-duration: 18s; }
+        
+        @keyframes float{
+          0%,100%{ transform: translate3d(0,0,0) scale(1); }
+          50%{ transform: translate3d(2rem,-1rem,0) scale(1.03); }
+        }
+        
+        .cta-card{
+          position: relative;
+          z-index:1;
+          max-width: 980px;
+          margin: 0 auto;
+          backdrop-filter: blur(8px) saturate(120%);
+          background: linear-gradient(180deg, #0b1024cc, #0b102480),
+                      radial-gradient(120% 150% at 100% 0%, #6a5cff14, transparent 60%);
+          border: 1px solid #7cf4ff22;
+          border-radius: 22px;
+          padding: clamp(1.5rem, 3vw, 2rem);
+          box-shadow:
+            0 0 0 1px #ffffff06 inset,
+            0 20px 50px #0008,
+            0 0 60px #6a5cff22;
+        }
+        
+        .cta-card::before{
+          content:"";
+          position:absolute; inset:-1px;
+          border-radius: inherit;
+          background:
+            radial-gradient(120px 60px at 20% 0%, #7cf4ff55, transparent 60%),
+            radial-gradient(120px 60px at 80% 0%, #e24bff3d, transparent 60%);
+          mask: linear-gradient(#fff, #fff) padding-box, linear-gradient(#000, #000);
+          -webkit-mask-composite: xor; mask-composite: exclude;
+          pointer-events:none;
+          opacity:.6;
+        }
+        
+        .cta-title{
+          font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
+          font-weight: 800;
+          letter-spacing: 0.2px;
+          line-height: 1.1;
+          font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+          color: var(--text);
+          margin: 0 0 1rem;
+          text-shadow: 0 2px 12px #0008, 0 0 14px #6a5cff44;
+        }
+        
+        .cta-copy{
+          color: var(--muted);
+          line-height: 1.65;
+          font-size: clamp(0.98rem, 1.2vw, 1.05rem);
+          margin: 0 0 1.5rem;
+          white-space: pre-wrap; /* preserves the original line breaks and spacing */
+        }
+        
+        /* Neon button */
+        .cta-btn{
+          display:inline-block;
+          padding: .9rem 1.25rem;
+          border-radius: 14px;
+          font-weight: 700;
+          letter-spacing:.3px;
+          color:#071018;
+          text-decoration:none;
+          background:
+            radial-gradient(140% 140% at 10% -20%, #ffffff, #b8f7ff 40%, #7cf4ff 60%, #6a5cff 120%);
+          box-shadow:
+            0 12px 28px #6a5cff44,
+            0 0 0 1px #7cf4ff88 inset,
+            0 0 24px #7cf4ff55 inset;
+          transform: translateZ(0);
+          transition: filter .2s ease, transform .15s ease, box-shadow .2s ease;
+        }
+        
+        .cta-btn:hover{
+          filter: brightness(1.05);
+          transform: translateY(-1px);
+          box-shadow:
+            0 18px 36px #6a5cff5a,
+            0 0 0 1px #c7fbffcc inset,
+            0 0 28px #a6f7ff99 inset;
+        }
+        
+        .cta-btn:active{
+          transform: translateY(0);
+        }
+        
+        /* Container utility if not present globally */
+        .container{ width:min(1100px, 100%); margin-inline:auto; }
+        
+        /* Reduce motion preference */
+        @media (prefers-reduced-motion: reduce){
+          .grid, .orb, .cta-btn{ animation: none; transition: none; }
+        }
+        </style>
+        
 
     <!-- Footer -->
     <footer class="footer">
