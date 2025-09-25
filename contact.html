@@ -70,22 +70,43 @@
               Ineza Bonte Grevy
             </a>
           </div>
-          <!-- Contact Form -->
-          <div class="contact-form">
-            <h3>Send Us a Message</h3>
-            <form action="#" method="post" onsubmit="alert('Thank you for your message!'); return false;">
-              <input type="text" name="name" placeholder="Your Name" required />
-              <input type="email" name="email" placeholder="Your Email" required />
-              <textarea name="message" placeholder="Your Message" required></textarea>
-              <button type="submit">Send Message</button>
-            </form>
-            <p style="margin-top:1rem; color: var(--muted-text-color);">
-              We respect your privacy. Your information will not be shared.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- Contact Form (static-site friendly, delivers to mrafiee22@ubishops.ca) -->
+<div class="contact-form">
+  <h3>Send Us a Message</h3>
+
+  <!-- Uses FormSubmit (no backend needed). First submission triggers a one-time email verification. -->
+  <form
+    action="https://formsubmit.co/mrafiee22@ubishops.ca"
+    method="POST"
+    target="_blank"
+  >
+    <!-- Required fields -->
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <textarea name="message" placeholder="Your Message" required></textarea>
+
+    <!-- Metadata -->
+    <input type="hidden" name="_subject" value="New message from Seeds of Sound website">
+    <input type="hidden" name="_template" value="table">
+    <!-- Redirect after submit (optional). Replace with a /thank-you page if you have one -->
+    <input type="hidden" name="_next" value="#contact-success">
+    <div id="contact-success" class="toast" aria-live="polite">Message sent ✅</div>
+    <style>
+    .toast{position:fixed;right:1rem;bottom:1rem;background:#10b981;color:#071018;padding:.75rem 1rem;border-radius:.5rem;box-shadow:0 10px 24px #0006;opacity:0;pointer-events:none;transition:.3s}
+    :target.toast{opacity:1}
+    </style>
+    <!-- Basic spam trap -->
+    <input type="text" name="_honey" style="display:none">
+    <input type="hidden" name="_captcha" value="true">
+
+    <button type="submit">Send Message</button>
+  </form>
+
+  <p style="margin-top:1rem; color: var(--muted-text-color);">
+    We respect your privacy. Your information will not be shared.
+  </p>
+</div>
+
 
     <!-- Footer -->
     <footer class="footer">
