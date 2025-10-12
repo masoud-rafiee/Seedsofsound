@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seeds of Sound | The Resonant Five Engineering</title>
+    <title>BU CS Club | Technicality Behind the Scenes of Seeds of Sound</title>
     <style>
         * {
             margin: 0;
@@ -528,27 +528,76 @@
             fill: currentColor;
         }
 
-        /* Image Gallery */
+        /* Image Gallery - Enhanced */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin-top: 3rem;
         }
 
         .gallery img {
             width: 100%;
-            height: 250px;
+            height: 280px;
             object-fit: cover;
             border-radius: 15px;
             border: 2px solid rgba(124, 58, 237, 0.3);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
         }
 
         .gallery img:hover {
-            transform: scale(1.08);
+            transform: scale(1.05);
             box-shadow: 0 15px 40px var(--glow);
             border-color: rgba(124, 58, 237, 0.6);
+        }
+
+        /* Large Image Gallery for Team/Development Photos */
+        .large-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .large-gallery img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .large-gallery img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 50px var(--glow);
+            border-color: rgba(124, 58, 237, 0.6);
+        }
+
+        /* Hardware Gallery - Grid for Circuit/Wiring Images */
+        .hardware-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .hardware-gallery img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(6, 182, 212, 0.4);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 16px rgba(6, 182, 212, 0.2);
+        }
+
+        .hardware-gallery img:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(6, 182, 212, 0.4);
+            border-color: rgba(6, 182, 212, 0.8);
         }
 
         /* Contact Form */
@@ -645,6 +694,14 @@
             section {
                 padding: 4rem 1rem;
             }
+
+            .gallery img, .hardware-gallery img {
+                height: 220px;
+            }
+
+            .large-gallery img {
+                height: 280px;
+            }
         }
     </style>
 </head>
@@ -660,7 +717,8 @@
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
                 <a href="#team">Team</a>
-                <a href="#docs">Docs</a>
+                <a href="#hardware">Hardware</a>
+                <a href="#development">Development</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
@@ -669,7 +727,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-bg">
-            <img src="images/hero-phone.jpeg" alt="Team with Phone" onerror="this.style.display='none'">
+            <img src="images/MAIN_TEAM.JPEG" alt="Team with Phone" onerror="this.style.display='none'">
             <div class="grid-overlay"></div>
         </div>
         <div class="hero-content">
@@ -731,8 +789,13 @@
                 Students who made the <strong>software, hardware and firmware from scratch</strong>, volunteering countless efforts and time to bring this project to life.
             </p>
             
-            <div class="gallery" style="margin-bottom: 4rem;">
-                <img src="images/team.jpeg" alt="Full Team" onerror="this.style.display='none'" style="grid-column: 1 / -1; height: 400px;">
+            <!-- Team Photos Gallery -->
+            <div class="large-gallery">
+                <img src="images/MAIN_TEAM(1).JPG" alt="Team Photo 1" onerror="this.style.display='none'">
+                <img src="images/MAIN_TEAM.JPEG" alt="Team Photo 2" onerror="this.style.display='none'">
+                <img src="images/celebrated_final_Project_Masoud.JPEG" alt="Final Project Celebration - Masoud" onerror="this.style.display='none'">
+                <img src="images/celebrated_final_Project_Umba.JPEG" alt="Final Project Celebration - Umba" onerror="this.style.display='none'">
+                <img src="images/previous_team.jpeg" alt="Previous Team Photo" onerror="this.style.display='none'">
             </div>
 
             <div class="team-grid">
@@ -819,18 +882,30 @@
         </div>
     </section>
 
-    <!-- Documentation Section -->
-    <section id="docs">
+    <!-- Hardware & Circuit Design Section -->
+    <section id="hardware">
         <div class="container">
-            <h2 class="section-title">Technical Documentation</h2>
-            
-            <div class="gallery">
-                <img src="images/wiring1.jpeg" alt="Wiring Setup" onerror="this.style.display='none'">
-                <img src="images/wiring2.jpeg" alt="Hardware Assembly" onerror="this.style.display='none'">
-                <img src="images/wiring3.jpeg" alt="Prototyping" onerror="this.style.display='none'">
+            <h2 class="section-title">Hardware & Circuit Engineering</h2>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 900px; margin: 0 auto 2rem; color: var(--text-muted);">
+                Behind-the-scenes look at the <strong>circuit design, wiring, prototyping, and hardware integration</strong> that powers Seeds of Sound.
+            </p>
+
+            <div class="hardware-gallery">
+                <img src="images/while_working(3).JPEG" alt="Circuit Work Session 1" onerror="this.style.display='none'">
+                <img src="images/while_working(5).JPEG" alt="Circuit Work Session 2" onerror="this.style.display='none'">
+                <img src="images/while_working(6).JPEG" alt="Hardware Assembly" onerror="this.style.display='none'">
+                <img src="images/while_working.jpeg" alt="Team Working on Electronics" onerror="this.style.display='none'">
+                <img src="images/while_working.JPEG" alt="Wiring Process" onerror="this.style.display='none'">
+                <img src="images/while_working(6).DJPEG" alt="Circuit Testing" onerror="this.style.display='none'">
+                <img src="images/wiring1.jpeg" alt="Detailed Wiring View 1" onerror="this.style.display='none'">
+                <img src="images/wiring2.jpeg" alt="Detailed Wiring View 2" onerror="this.style.display='none'">
+                <img src="images/wiring3.jpeg" alt="Component Integration" onerror="this.style.display='none'">
+                <img src="images/wiring4.jpeg" alt="Final Wiring Configuration" onerror="this.style.display='none'">
+                <img src="images/while_working.JPEG" alt="Prototyping Session" onerror="this.style.display='none'">
+                <img src="images/while_working--_2_.jpeg" alt="Testing Phase" onerror="this.style.display='none'">
             </div>
 
-            <div class="feature-grid" style="margin-top: 3rem;">
+            <div class="feature-grid" style="margin-top: 4rem;">
                 <div class="feature-card">
                     <h3>⚡ Systems Setup</h3>
                     <p><strong>Purpose:</strong> A vintage rotary telephone, re-engineered with a Raspberry Pi Zero 2 W, plays audio recordings from an onboard archive when the receiver is lifted.</p>
@@ -864,22 +939,42 @@
                     </ul>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div style="margin-top: 3rem; padding: 2rem; background: var(--surface); border-radius: 15px; border: 1px solid rgba(124, 58, 237, 0.3);">
-                <h3 style="color: var(--accent); margin-bottom: 1rem;">🛡️ Maintenance Tips</h3>
-                <ul style="line-height: 1.8; color: var(--text-muted);">
-                    <li>Keep vent holes clear for cooling</li>
-                    <li>Power down gently by unplugging only after 5 seconds of silence</li>
-                    <li>Use microfiber cloth for cleaning exterior</li>
-                    <li>Store indoors between 5°C and 35°C</li>
-                    <li>Bluetooth disabled by default during exhibit hours for security</li>
+    <!-- Development Process Section -->
+    <section id="development" style="background: var(--surface);">
+        <div class="container">
+            <h2 class="section-title">Development Journey</h2>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 900px; margin: 0 auto 2rem; color: var(--text-muted);">
+                From initial prototypes to final deployment — the <strong>iterative engineering process</strong> that brought Seeds of Sound to life.
+            </p>
+
+            <div class="gallery">
+                <img src="images/the_final_project_pic.jpeg" alt="Final Project Showcase" onerror="this.style.display='none'">
+                <img src="images/onCampus.jpeg" alt="On Campus Display" onerror="this.style.display='none'">
+                <img src="images/onCampus2.jpeg" alt="Campus Exhibition" onerror="this.style.display='none'">
+                <img src="images/while_working.JPEG" alt="Development Work Session" onerror="this.style.display='none'">
+                <img src="images/while_working(4).JPEG" alt="Team Collaboration" onerror="this.style.display='none'">
+                <img src="images/wiring3.jpeg" alt="Wiring Integration" onerror="this.style.display='none'">
+            </div>
+
+            <div style="margin-top: 4rem; padding: 2.5rem; background: rgba(124, 58, 237, 0.08); border-radius: 20px; border: 1px solid rgba(124, 58, 237, 0.3);">
+                <h3 style="color: var(--accent); margin-bottom: 1.5rem; font-size: 1.8rem; text-align: center;">🛡️ Technical Highlights</h3>
+                <ul style="line-height: 2; color: var(--text-muted); max-width: 900px; margin: 0 auto;">
+                    <li><strong>Custom Raspberry Pi firmware</strong> with audio playback automation</li>
+                    <li><strong>Hook-switch detection</strong> using GPIO and hardware interrupts</li>
+                    <li><strong>Power management</strong> optimized for multi-day exhibitions</li>
+                    <li><strong>Audio signal processing</strong> with DAC integration for high-fidelity output</li>
+                    <li><strong>Modular design</strong> enabling easy maintenance and updates</li>
+                    <li><strong>Robust error handling</strong> for unattended operation in public spaces</li>
                 </ul>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" style="background: var(--surface);">
+    <section id="contact">
         <div class="container">
             <h2 class="section-title">Partner With The Resonant Five</h2>
             <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto 3rem; color: var(--text-muted);">
@@ -952,7 +1047,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.feature-card, .team-card').forEach(el => {
+        document.querySelectorAll('.feature-card, .team-card, .gallery img, .hardware-gallery img, .large-gallery img').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
