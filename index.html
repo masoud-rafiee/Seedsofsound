@@ -1,325 +1,775 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Seeds of Sound | Bishop's University CS Club</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <!-- Navigation bar -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seeds of Sound | 5-EYES Engineering</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --primary-dark: #5b21b6;
+            --secondary: #06b6d4;
+            --accent: #f59e0b;
+            --bg-dark: #0a0118;
+            --bg-darker: #050010;
+            --text: #f3f4f6;
+            --text-muted: #9ca3af;
+            --surface: #1a1229;
+            --glow: rgba(124, 58, 237, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Futuristic Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 1, 24, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section img {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 0 10px var(--glow));
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.15), transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(6, 182, 212, 0.15), transparent 50%),
+                linear-gradient(180deg, var(--bg-darker), var(--bg-dark));
+        }
+
+        .hero-bg img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            filter: grayscale(20%);
+        }
+
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(124, 58, 237, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124, 58, 237, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px var(--glow);
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 0 30px var(--glow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cta-btn:hover::before {
+            opacity: 1;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 40px var(--glow);
+        }
+
+        .cta-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--text), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--glow), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            position: relative;
+        }
+
+        .feature-card p, .feature-card ul {
+            position: relative;
+            color: var(--text-muted);
+        }
+
+        .feature-card ul {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--surface);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px var(--glow);
+        }
+
+        .team-card h4 {
+            color: var(--primary);
+            margin: 1rem 0 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .team-card .role {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .team-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .team-links a:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .linkedin-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Image Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px var(--glow);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            background: var(--bg-dark);
+            color: var(--text);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--glow);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px var(--glow);
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 40px var(--glow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-darker);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(124, 58, 237, 0.2);
+        }
+
+        footer img {
+            height: 80px;
+            margin: 0 auto 2rem;
+            filter: drop-shadow(0 0 20px var(--glow));
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .logo-section img {
+                height: 50px;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
     <nav>
-      <div class="logo">
-        <a href="index.html">
-          <img src="images/Logo2.jpeg" alt="Bishop's Computer Science Club logo" />
-        </a>
-      </div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="seeds.html">Seeds of Sound</a>
-        <a href="tech.html">Build Guide</a>
-        <a href="firstsupper.html">The First Supper</a>
-        <a href="team.html">Team</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <button id="dark-toggle" class="dark-toggle">Dark Mode</button>
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="Logo2.jpeg" alt="Bishop's CS Club Shield" onerror="this.style.display='none'">
+                <span class="logo-text">5-EYES</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#team">Team</a>
+                <a href="#docs">Docs</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-      <!-- Placeholder video; replace hero.mp4 with your eight‑second clip -->
-      <video src="videos/hero.mp4" autoplay loop muted playsinline poster="images/hero-phone.jpeg"></video>
-      <div class="overlay">
-        <h1>Seeds of Sound</h1>
-        <p>
-          Harvesting voices for a sustainable future – pick up the phone and
-          listen.
-        </p>
-        <a href="seeds.html" class="btn">Discover More</a>
-      </div>
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <img src="hero-phone.jpeg" alt="Team with Phone" onerror="this.style.display='none'">
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1>SEEDS OF SOUND</h1>
+            <p>Engineered by the 5-EYES of Bishop's University Computer Science Club — Transforming vintage technology into interactive storytelling devices</p>
+            <a href="#contact" class="cta-btn"><span>Partner With Us →</span></a>
+        </div>
     </section>
 
     <!-- About Section -->
-    <section class="about">
-      <div class="container">
-        <div class="text">
-          <h2>About the Project</h2>
-          <p>
-            The Seeds of Sound project transforms a vintage rotary telephone
-            into an evocative audio installation. When you lift the receiver,
-            it randomly plays recorded voices of students, athletes, farmers
-            and dreamers, offering a mosaic of reflections on food, memory
-            and the future.
-          </p>
-          <p>
-            Powered by a Raspberry Pi hidden inside the phone, the system
-            plays high‑quality audio and stops on hang‑up, readying a new
-            track for the next listener. The tactile experience of holding
-            an analogue handset bridges past and future, while the content
-            fosters dialogue and reflection.
-          </p>
-          <a href="firstsupper.html" class="btn">Learn about The First Supper</a>
-        </div>
-        <div class="image">
-          <img
-            src="images/hero-phone.jpeg"
-            alt="Rotary phone with embedded electronics"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
-      <div class="container">
-        <div class="feature-card">
-          <h3>Random Playback</h3>
-          <p>
-            Every time you pick up the handset, you hear a different voice
-            from our curated archive. The Raspberry Pi selects recordings at
-            random and resets when the phone is hung up.
-          </p>
-        </div>
-        <div class="feature-card">
-          <h3>High‑Fidelity Sound</h3>
-          <p>
-            Our custom circuit uses a high‑quality DAC and amplifier to
-            drive the vintage handset speaker with CD‑quality audio. Voices
-            are crisp and engaging, even in noisy settings.
-          </p>
-        </div>
-        <div class="feature-card">
-          <h3>Sustainable Storytelling</h3>
-          <p>
-            Paired with an artisanal book made from seed‑paper, participants
-            can write their reflections by hand. Later, those pages can be
-            planted, turning words into wildflowers.
-          </p>
-        </div>
-        <div class="feature-card">
-          <h3>Accessible & Robust</h3>
-          <p>
-            The electronics are neatly integrated inside the phone, ensuring
-            reliability during multi‑day exhibitions. A discreet hook switch
-            senses when the handset is lifted and stops playback when
-            returned.
-          </p>
-        </div>
-      </div>
-    </section>
-
-      <!-- Call to Action Section -->
-    <!--
-      <section class="cta">
+    <section id="about">
         <div class="container">
-          <h2>Support Our Mission</h2>
-          <p>
-            💡 <strong>Why Your Support Matters</strong><br>
-            Your support helps us sustain and scale <em>Seeds of Sound</em> — an installation that transforms vintage telephones into living archives of voices, memories, and ideas.
-          </p>
-          <p>
-            But this is only the beginning. Our team is also prototyping <strong>IoT systems, AI tools, robotics, solar technologies, and brain–computer interfaces</strong>. Backing this initiative means fueling a pipeline of breakthrough projects that merge creativity with engineering and sustainability.
-          </p>
-          <ul>
-            <li>Bring these technologies to new audiences — from local communities to global forums.</li>
-            <li>Expand our archive of voices, making innovation participatory and human-centered.</li>
-            <li>Build partnerships with accelerators, incubators, companies, and research labs ready to collaborate on the next frontier.</li>
-          </ul>
-          <p>
-            By joining us, you don’t just support an art piece — you invest in a new generation of innovators bridging science, design, and social impact.
-          </p>
-          <a href="contact.html" class="btn-primary">Get in Touch</a>
-        </div>
-      </section>
-            <!-- Call to Action Section -->
-        <section class="cta neo-cta">
-          <div class="cta-bg">
-            <span class="grid"></span>
-            <span class="orb orb-1"></span>
-            <span class="orb orb-2"></span>
-          </div>
-        
-          <div class="container cta-card">
-            <h2 class="cta-title">Support Our Mission</h2>
-            <p class="cta-copy">
-              💡 Why Your Support Matters
-                Your support helps us sustain and scale Seeds of Sound — an installation that transforms vintage telephones into living archives of voices, memories, and ideas.
-                But this is only the beginning. The same team is actively prototyping IoT systems, AI tools, robotics, solar technologies, and brain–computer interfaces. Backing this initiative means fueling a pipeline of breakthrough projects that merge creativity with engineering and sustainability.
-                Together, we can:
-                Bring these technologies to new audiences — from local communities to global forums.
-                Expand our archive of voices, making innovation participatory and human-centered.
-                Build partnerships with accelerators, incubators, companies, and research labs who are ready to collaborate on the next frontier.
-                By joining us, you don’t just support an art piece — you invest in a new generation of innovators who are bridging science, design, and social impact.
+            <h2 class="section-title">Engineered by the 5-EYES</h2>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 900px; margin: 0 auto 3rem; color: var(--text-muted);">
+                We, the 5-EYES of the Bishop's University Computer Science Club — <strong>Masoud Rafiee, Daniel James A. Carone, Umba Lubembele, Hugo Zamora Zorrilla, and Ineza Bonté</strong> — are the creators and engineers behind Seeds of Sound.
             </p>
-            <a class="cta-btn" href="contact.html" aria-label="Go to Contact page">Contact</a>
-          </div>
-        </section>
-        
-        <style>
-        /* ===== Futuristic CTA ===== */
-        :root{
-          --bg0:#070a12;
-          --bg1:#0b1220;
-          --neon:#7cf4ff;
-          --iris:#6a5cff;
-          --fuchsia:#e24bff;
-          --card:#0f172aee;
-          --text:#e6ebff;
-          --muted:#b6c2ffb3;
-        }
-        
-        .neo-cta{
-          position: relative;
-          overflow: hidden;
-          padding: clamp(4rem, 8vw, 8rem) 1.25rem;
-          background: radial-gradient(1200px 600px at 80% -10%, #123, transparent 60%),
-                      radial-gradient(900px 500px at -10% 120%, #211238, transparent 55%),
-                      linear-gradient(180deg, var(--bg0), var(--bg1));
-          isolation: isolate;
-        }
-        
-        .cta-bg{
-          position:absolute; inset:0; pointer-events:none; z-index:0;
-        }
-        
-        .cta-bg .grid{
-          position:absolute; inset:-200%;
-          background:
-            linear-gradient(transparent 98%, #ffffff0d 0) 0 0/2rem 2rem,
-            linear-gradient(90deg, transparent 98%, #ffffff0d 0) 0 0/2rem 2rem;
-          mask: radial-gradient(60% 60% at 50% 50%, #000 40%, transparent);
-          animation: drift 22s linear infinite;
-          opacity:.35;
-          filter: drop-shadow(0 0 6px #ffffff10);
-        }
-        
-        @keyframes drift{
-          to{ transform: translate3d(-2rem,-2rem,0); }
-        }
-        
-        .orb{
-          position:absolute;
-          width:42vmax; height:42vmax; border-radius:50%;
-          background: radial-gradient(circle at 30% 30%, var(--neon), transparent 55%),
-                      radial-gradient(circle at 70% 70%, var(--fuchsia), transparent 60%);
-          filter: blur(40px) saturate(120%);
-          mix-blend-mode: screen; opacity:.18;
-          animation: float 14s ease-in-out infinite;
-        }
-        .orb-1{ top:-20%; left:-10%; }
-        .orb-2{ bottom:-30%; right:-15%; animation-duration: 18s; }
-        
-        @keyframes float{
-          0%,100%{ transform: translate3d(0,0,0) scale(1); }
-          50%{ transform: translate3d(2rem,-1rem,0) scale(1.03); }
-        }
-        
-        .cta-card{
-          position: relative;
-          z-index:1;
-          max-width: 980px;
-          margin: 0 auto;
-          backdrop-filter: blur(8px) saturate(120%);
-          background: linear-gradient(180deg, #0b1024cc, #0b102480),
-                      radial-gradient(120% 150% at 100% 0%, #6a5cff14, transparent 60%);
-          border: 1px solid #7cf4ff22;
-          border-radius: 22px;
-          padding: clamp(1.5rem, 3vw, 2rem);
-          box-shadow:
-            0 0 0 1px #ffffff06 inset,
-            0 20px 50px #0008,
-            0 0 60px #6a5cff22;
-        }
-        
-        .cta-card::before{
-          content:"";
-          position:absolute; inset:-1px;
-          border-radius: inherit;
-          background:
-            radial-gradient(120px 60px at 20% 0%, #7cf4ff55, transparent 60%),
-            radial-gradient(120px 60px at 80% 0%, #e24bff3d, transparent 60%);
-          mask: linear-gradient(#fff, #fff) padding-box, linear-gradient(#000, #000);
-          -webkit-mask-composite: xor; mask-composite: exclude;
-          pointer-events:none;
-          opacity:.6;
-        }
-        
-        .cta-title{
-          font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, sans-serif;
-          font-weight: 800;
-          letter-spacing: 0.2px;
-          line-height: 1.1;
-          font-size: clamp(1.8rem, 3.2vw, 2.6rem);
-          color: var(--text);
-          margin: 0 0 1rem;
-          text-shadow: 0 2px 12px #0008, 0 0 14px #6a5cff44;
-        }
-        
-        .cta-copy{
-          color: var(--muted);
-          line-height: 1.65;
-          font-size: clamp(0.98rem, 1.2vw, 1.05rem);
-          margin: 0 0 1.5rem;
-          white-space: pre-wrap; /* preserves the original line breaks and spacing */
-        }
-        
-        /* Neon button */
-        .cta-btn{
-          display:inline-block;
-          padding: .9rem 1.25rem;
-          border-radius: 14px;
-          font-weight: 700;
-          letter-spacing:.3px;
-          color:#071018;
-          text-decoration:none;
-          background:
-            radial-gradient(140% 140% at 10% -20%, #ffffff, #b8f7ff 40%, #7cf4ff 60%, #6a5cff 120%);
-          box-shadow:
-            0 12px 28px #6a5cff44,
-            0 0 0 1px #7cf4ff88 inset,
-            0 0 24px #7cf4ff55 inset;
-          transform: translateZ(0);
-          transition: filter .2s ease, transform .15s ease, box-shadow .2s ease;
-        }
-        
-        .cta-btn:hover{
-          filter: brightness(1.05);
-          transform: translateY(-1px);
-          box-shadow:
-            0 18px 36px #6a5cff5a,
-            0 0 0 1px #c7fbffcc inset,
-            0 0 28px #a6f7ff99 inset;
-        }
-        
-        .cta-btn:active{
-          transform: translateY(0);
-        }
-        
-        /* Container utility if not present globally */
-        .container{ width:min(1100px, 100%); margin-inline:auto; }
-        
-        /* Reduce motion preference */
-        @media (prefers-reduced-motion: reduce){
-          .grid, .orb, .cta-btn{ animation: none; transition: none; }
-        }
-        </style>
-        
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🔧 Full-Stack Engineering</h3>
+                    <p>We designed, built, and programmed the entire system from scratch — crafting all software, hardware, and firmware to transform vintage rotary telephones into interactive storytelling devices.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🎛️ Custom Embedded Systems</h3>
+                    <p>Each phone houses a custom Raspberry Pi-based embedded system, running original proprietary code we developed to control playback, interface logic, and sensor detection.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🌍 From Campus to Rome</h3>
+                    <p>Dr. Vivian Valencia, together with Masoud Rafiee and Imen Djendli, will present The First Supper — featuring Seeds of Sound — at the World Food Forum 2025 in Rome.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: center;">
+                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-muted); max-width: 900px; margin: 0 auto;">
+                    When the handset is lifted, the device plays a curated mosaic of voices — students, farmers, athletes, and dreamers — sharing stories about food, memory, and the future. Our engineering turns abstract ideas into living, tactile experiences, demonstrating how Computer Science and creativity can humanize technology.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" style="background: var(--surface);">
+        <div class="container">
+            <h2 class="section-title">The 5-EYES Team</h2>
+            
+            <div class="gallery" style="margin-bottom: 4rem;">
+                <img src="team.jpeg" alt="Full Team" onerror="this.style.display='none'" style="grid-column: 1 / -1; height: 400px;">
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <h4>Masoud Rafiee</h4>
+                    <p class="role">Hardware Integration & Project Lead</p>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/masoud-rafiee" target="_blank" rel="noopener">
+                            <svg class="linkedin-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 18.5h-2.75v-9h2.75v9zm-1.37-10.23c-.88 0-1.59-.71-1.59-1.59s.71-1.59 1.59-1.59 1.59.71 1.59 1.59-.71 1.59-1.59 1.59zm12.37 10.23h-2.76v-4.57c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.64h-2.76v-9h2.65v1.23h.04c.37-.71 1.27-1.46 2.62-1.46 2.79 0 3.31 1.84 3.31 4.23v5z"/></svg>
+                            LinkedIn
+                        </a>
+                        <span style="color: var(--text-muted);">•</span>
+                        <a href="mailto:mrafiee22@ubishops.ca">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.065l-11.995-8.06h23.99l-11.995 8.06zm0 2.282l-12-8.13v14.783h24v-14.783l-12 8.13z"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <h4>Daniel James A. Carone</h4>
+                    <p class="role">Software Development & Audio Programming</p>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/daniel-james-a-carone-a11323385" target="_blank" rel="noopener">
+                            <svg class="linkedin-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 18.5h-2.75v-9h2.75v9zm-1.37-10.23c-.88 0-1.59-.71-1.59-1.59s.71-1.59 1.59-1.59 1.59.71 1.59 1.59-.71 1.59-1.59 1.59zm12.37 10.23h-2.76v-4.57c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.64h-2.76v-9h2.65v1.23h.04c.37-.71 1.27-1.46 2.62-1.46 2.79 0 3.31 1.84 3.31 4.23v5z"/></svg>
+                            LinkedIn
+                        </a>
+                        <span style="color: var(--text-muted);">•</span>
+                        <a href="mailto:dcarone22@ubishops.ca">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.065l-11.995-8.06h23.99l-11.995 8.06zm0 2.282l-12-8.13v14.783h24v-14.783l-12 8.13z"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <h4>Umba Lubembele</h4>
+                    <p class="role">Circuit Design & Testing</p>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/umba-lubembele-b08232338" target="_blank" rel="noopener">
+                            <svg class="linkedin-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 18.5h-2.75v-9h2.75v9zm-1.37-10.23c-.88 0-1.59-.71-1.59-1.59s.71-1.59 1.59-1.59 1.59.71 1.59 1.59-.71 1.59-1.59 1.59zm12.37 10.23h-2.76v-4.57c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.64h-2.76v-9h2.65v1.23h.04c.37-.71 1.27-1.46 2.62-1.46 2.79 0 3.31 1.84 3.31 4.23v5z"/></svg>
+                            LinkedIn
+                        </a>
+                        <span style="color: var(--text-muted);">•</span>
+                        <a href="mailto:ulubembele22@ubishops.ca">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.065l-11.995-8.06h23.99l-11.995 8.06zm0 2.282l-12-8.13v14.783h24v-14.783l-12 8.13z"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <h4>Hugo Zamora Zorrilla</h4>
+                    <p class="role">Audio Curation & Documentation</p>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/hugo-zamora-z" target="_blank" rel="noopener">
+                            <svg class="linkedin-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 18.5h-2.75v-9h2.75v9zm-1.37-10.23c-.88 0-1.59-.71-1.59-1.59s.71-1.59 1.59-1.59 1.59.71 1.59 1.59-.71 1.59-1.59 1.59zm12.37 10.23h-2.76v-4.57c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.64h-2.76v-9h2.65v1.23h.04c.37-.71 1.27-1.46 2.62-1.46 2.79 0 3.31 1.84 3.31 4.23v5z"/></svg>
+                            LinkedIn
+                        </a>
+                        <span style="color: var(--text-muted);">•</span>
+                        <a href="mailto:hzamora22@ubishops.ca">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.065l-11.995-8.06h23.99l-11.995 8.06zm0 2.282l-12-8.13v14.783h24v-14.783l-12 8.13z"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <h4>Ineza Bonté</h4>
+                    <p class="role">User Experience & Storytelling</p>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/inezabonte" target="_blank" rel="noopener">
+                            <svg class="linkedin-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 18.5h-2.75v-9h2.75v9zm-1.37-10.23c-.88 0-1.59-.71-1.59-1.59s.71-1.59 1.59-1.59 1.59.71 1.59 1.59-.71 1.59-1.59 1.59zm12.37 10.23h-2.76v-4.57c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.64h-2.76v-9h2.65v1.23h.04c.37-.71 1.27-1.46 2.62-1.46 2.79 0 3.31 1.84 3.31 4.23v5z"/></svg>
+                            LinkedIn
+                        </a>
+                        <span style="color: var(--text-muted);">•</span>
+                        <a href="mailto:ibonte22@ubishops.ca">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.065l-11.995-8.06h23.99l-11.995 8.06zm0 2.282l-12-8.13v14.783h24v-14.783l-12 8.13z"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: center;">
+                <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: var(--secondary);">Interdisciplinary Collaboration</h3>
+                <p style="max-width: 900px; margin: 0 auto; color: var(--text-muted);">
+                    While the initial concept emerged from the Arts Administration program, the project was realized entirely through the technical innovation of the Bishop's University Computer Science Club team. Support came from Dr. Russell Butler (Chair, Computer Science), Dr. Valerio Faraoni (Dean, Natural Sciences and Mathematics), Mrs. Nanci Chagnon (Secretary to the Dean), and Dr. Vivian Valencia (Research Chair in Sustainable Agriculture and Climate Action).
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="docs">
+        <div class="container">
+            <h2 class="section-title">Technical Documentation</h2>
+            
+            <div class="gallery">
+                <img src="wiring1.jpeg" alt="Wiring Setup" onerror="this.style.display='none'">
+                <img src="wiring2.jpeg" alt="Hardware Assembly" onerror="this.style.display='none'">
+                <img src="wiring3.jpeg" alt="Prototyping" onerror="this.style.display='none'">
+            </div>
+
+            <div class="feature-grid" style="margin-top: 3rem;">
+                <div class="feature-card">
+                    <h3>⚡ Systems Setup</h3>
+                    <p><strong>Purpose:</strong> A vintage rotary telephone, re-engineered with a Raspberry Pi Zero 2 W, plays audio recordings from an onboard archive when the receiver is lifted.</p>
+                    <ul style="margin-top: 1rem; line-height: 1.8;">
+                        <li>Connect USB-C power cable to 5V 2A adapter</li>
+                        <li>Wait for startup beep confirmation</li>
+                        <li>Lift receiver to trigger random recording</li>
+                        <li>Hanging up instantly stops playback</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🔧 Troubleshooting</h3>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>No beep:</strong> Check USB-C plug, use 5V 2A charger</li>
+                        <li><strong>No sound:</strong> Firmly seat handset on/off switch</li>
+                        <li><strong>Static/distortion:</strong> Check speaker terminals, adjust gain</li>
+                        <li><strong>Won't start:</strong> Re-flash image from backup microSD</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📡 Bluetooth Protocol</h3>
+                    <p><strong>For file transfer & updates:</strong></p>
+                    <ul style="margin-top: 1rem; line-height: 1.8;">
+                        <li>Open rear panel for mini HDMI port</li>
+                        <li>Connect display and keyboard</li>
+                        <li>Enable Bluetooth via terminal</li>
+                        <li>Transfer audio to /home/pi/audio/</li>
+                        <li>Supported: .wav, .mp3 (44.1 kHz)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem; padding: 2rem; background: var(--surface); border-radius: 15px; border: 1px solid rgba(124, 58, 237, 0.3);">
+                <h3 style="color: var(--accent); margin-bottom: 1rem;">🛡️ Maintenance Tips</h3>
+                <ul style="line-height: 1.8; color: var(--text-muted);">
+                    <li>Keep vent holes clear for cooling</li>
+                    <li>Power down gently by unplugging only after 5 seconds of silence</li>
+                    <li>Use microfiber cloth for cleaning exterior</li>
+                    <li>Store indoors between 5°C and 35°C</li>
+                    <li>Bluetooth disabled by default during exhibit hours for security</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background: var(--surface);">
+        <div class="container">
+            <h2 class="section-title">Partner With the 5-EYES</h2>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto 3rem; color: var(--text-muted);">
+                Ready to collaborate on breakthrough IoT, robotics, AI, or sustainable technology projects? Let's build the future together.
+            </p>
+            
+            <form action="https://formsubmit.co/mrafiee22@ubishops.ca" method="POST" class="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required rows="6"></textarea>
+                
+                <input type="hidden" name="_subject" value="New Partnership Inquiry - Seeds of Sound">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="thank-you.html">
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_captcha" value="true">
+                
+                <button type="submit">Send Message →</button>
+            </form>
+
+            <div style="margin-top: 4rem; text-align: center;">
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">📧 Email: <a href="mailto:csclub@ubishops.ca" style="color: var(--secondary); text-decoration: none;">csclub@ubishops.ca</a></p>
+                <p style="color: var(--text-muted);">🔗 <a href="https://www.linkedin.com/company/bu-csc" target="_blank" rel="noopener" style="color: var(--secondary); text-decoration: none;">LinkedIn: Bishop's University CS Club</a></p>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
-      <p>
-        &copy; 2025 Bishop's University Computer Science Club. All rights
-        reserved.
-      </p>
-      <p>
-        CS Club members and contributors: Masoud Rafiee, Daniel Anastasio
-        Carone, Umba Lubembele, Hugo Erick Zamora Zorrila, Ineza Bonte
-        Grevy. Art Department collaborators: Imen Djendli and Contributors from Sustainable Agriculture and Food Systems program: Dr. Vivian
-        Valencia.
-      </p>
+    <footer>
+        <img src="Logo2.jpeg" alt="Bishop's CS Club" onerror="this.style.display='none'">
+        <p>&copy; 2025 Bishop's University Computer Science Club — The 5-EYES Team</p>
+        <p style="margin-top: 1rem;">Masoud Rafiee • Daniel James A. Carone • Umba Lubembele • Hugo Zamora Zorrilla • Ineza Bonté</p>
+        <p style="margin-top: 0.5rem;">Collaborators: Imen Djendli (Arts) • Dr. Vivian Valencia (Sustainable Agriculture)</p>
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--accent);">🌟 From concept to global stage — Student-led technology elevating art and imagination</p>
     </footer>
 
-    <script src="script.js"></script>
-  </body>
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImg = document.querySelector('.hero-bg img');
+            if (heroImg) {
+                heroImg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .team-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
 </html>
