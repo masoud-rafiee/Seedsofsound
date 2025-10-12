@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/jpeg" href="/images/Logo.jpeg">
-    <title>BU CS BLUB | Seeds of Sound | The Resonant Five Engineering</title>
+    <title>Seeds of Sound | The Resonant Five Engineering</title>
     <style>
         * {
             margin: 0;
@@ -33,15 +32,16 @@
             overflow-x: hidden;
         }
 
-        /* Futuristic Nav */
+        /* Enhanced Futuristic Nav */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(10, 1, 24, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+            background: rgba(10, 1, 24, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+            box-shadow: 0 4px 30px rgba(124, 58, 237, 0.1);
         }
 
         .nav-container {
@@ -56,21 +56,53 @@
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
+            position: relative;
         }
 
         .logo-section img {
-            height: 60px;
+            height: 65px;
             width: auto;
-            filter: drop-shadow(0 0 10px var(--glow));
+            filter: drop-shadow(0 0 15px var(--glow)) brightness(1.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        .logo-section img:hover {
+            filter: drop-shadow(0 0 25px rgba(124, 58, 237, 0.6)) brightness(1.2);
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
         }
 
         .logo-text {
-            font-weight: 700;
-            font-size: 1.2rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            font-weight: 800;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #fff 0%, var(--secondary) 50%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 30px var(--glow);
+            position: relative;
+        }
+
+        .logo-text::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-section:hover .logo-text::after {
+            opacity: 1;
         }
 
         .nav-links {
@@ -82,22 +114,41 @@
         .nav-links a {
             color: var(--text);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             position: relative;
             transition: all 0.3s ease;
+            padding: 0.5rem 0;
         }
 
-        .nav-links a::after {
+        .nav-links a::before {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 0;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0;
             height: 2px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             transition: width 0.3s ease;
         }
 
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a:hover::before,
         .nav-links a:hover::after {
             width: 100%;
         }
@@ -128,7 +179,7 @@
             height: 100%;
             object-fit: cover;
             opacity: 0.3;
-            filter: grayscale(20%);
+            filter: grayscale(20%) brightness(0.8);
         }
 
         .grid-overlay {
@@ -158,11 +209,16 @@
             font-size: clamp(2.5rem, 6vw, 5rem);
             font-weight: 900;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #fff, var(--secondary), var(--primary));
+            background: linear-gradient(135deg, #fff 0%, var(--secondary) 50%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 0 40px var(--glow);
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px var(--glow)); }
+            50% { filter: drop-shadow(0 0 40px var(--glow)); }
         }
 
         .hero-subtitle {
@@ -171,7 +227,19 @@
             font-weight: 700;
             margin-bottom: 1rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero p {
@@ -181,6 +249,7 @@
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
         }
 
         .team-names {
@@ -188,24 +257,29 @@
             font-weight: 700;
             color: var(--text);
             margin: 1.5rem 0;
-            padding: 1rem;
-            background: rgba(124, 58, 237, 0.1);
-            border-radius: 10px;
-            border: 1px solid rgba(124, 58, 237, 0.3);
+            padding: 1.5rem;
+            background: rgba(124, 58, 237, 0.15);
+            border-radius: 15px;
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.2);
+            animation: fadeInUp 0.8s ease 0.6s backwards;
         }
 
         .cta-btn {
             display: inline-block;
-            padding: 1rem 3rem;
+            padding: 1.2rem 3.5rem;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
-            box-shadow: 0 0 30px var(--glow);
-            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            box-shadow: 0 0 40px var(--glow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            animation: fadeInUp 0.8s ease 0.8s backwards;
         }
 
         .cta-btn::before {
@@ -214,7 +288,7 @@
             inset: 0;
             background: linear-gradient(135deg, var(--secondary), var(--primary));
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
         }
 
         .cta-btn:hover::before {
@@ -222,8 +296,8 @@
         }
 
         .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 40px var(--glow);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 50px rgba(124, 58, 237, 0.5);
         }
 
         .cta-btn span {
@@ -250,6 +324,19 @@
             background: linear-gradient(135deg, var(--text), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
         }
 
         .tagline {
@@ -261,7 +348,7 @@
             font-style: italic;
         }
 
-        /* Feature Cards */
+        /* Enhanced Feature Cards */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -271,10 +358,10 @@
 
         .feature-card {
             background: var(--surface);
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.3);
             border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s ease;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
@@ -286,29 +373,45 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, var(--glow), transparent 70%);
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15), transparent 70%);
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(124, 58, 237, 0.4);
+            border-color: rgba(124, 58, 237, 0.6);
         }
 
-        .feature-card:hover::before {
+        .feature-card:hover::before,
+        .feature-card:hover::after {
             opacity: 1;
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             margin-bottom: 1rem;
             color: var(--secondary);
             position: relative;
+            z-index: 1;
         }
 
         .feature-card p, .feature-card ul {
             position: relative;
+            z-index: 1;
             color: var(--text-muted);
         }
 
@@ -324,11 +427,13 @@
 
         /* Collaboration Section */
         .collab-box {
-            background: rgba(6, 182, 212, 0.05);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
+            background: rgba(6, 182, 212, 0.08);
+            border: 1px solid rgba(6, 182, 212, 0.4);
+            border-radius: 20px;
+            padding: 2.5rem;
             margin: 3rem 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(6, 182, 212, 0.2);
         }
 
         .collab-box h3 {
@@ -347,28 +452,48 @@
 
         .team-card {
             background: var(--surface);
-            border-radius: 15px;
+            border-radius: 20px;
             padding: 2rem;
             text-align: center;
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
         }
 
         .team-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px var(--glow);
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 0 15px 40px var(--glow);
+            border-color: rgba(124, 58, 237, 0.6);
         }
 
         .team-card h4 {
             color: var(--primary);
             margin: 1rem 0 0.5rem;
             font-size: 1.3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .team-card .role {
             color: var(--text-muted);
             font-size: 0.95rem;
             margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .team-links {
@@ -378,6 +503,8 @@
             align-items: center;
             flex-wrap: wrap;
             margin-top: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .team-links a {
@@ -415,12 +542,13 @@
             object-fit: cover;
             border-radius: 15px;
             border: 2px solid rgba(124, 58, 237, 0.3);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .gallery img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px var(--glow);
+            transform: scale(1.08);
+            box-shadow: 0 15px 40px var(--glow);
+            border-color: rgba(124, 58, 237, 0.6);
         }
 
         /* Contact Form */
@@ -432,9 +560,9 @@
         .contact-form input,
         .contact-form textarea {
             width: 100%;
-            padding: 1rem;
+            padding: 1.2rem;
             margin-bottom: 1.5rem;
-            border-radius: 10px;
+            border-radius: 12px;
             border: 1px solid rgba(124, 58, 237, 0.3);
             background: var(--bg-dark);
             color: var(--text);
@@ -447,7 +575,8 @@
         .contact-form textarea:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 20px var(--glow);
+            box-shadow: 0 0 25px var(--glow);
+            background: rgba(26, 18, 41, 0.5);
         }
 
         .contact-form textarea {
@@ -457,7 +586,7 @@
 
         .contact-form button {
             width: 100%;
-            padding: 1rem;
+            padding: 1.2rem;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border: none;
@@ -465,13 +594,13 @@
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 0 30px var(--glow);
         }
 
         .contact-form button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 40px var(--glow);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 50px var(--glow);
         }
 
         /* Footer */
@@ -479,13 +608,13 @@
             background: var(--bg-darker);
             padding: 3rem 2rem;
             text-align: center;
-            border-top: 1px solid rgba(124, 58, 237, 0.2);
+            border-top: 1px solid rgba(124, 58, 237, 0.3);
         }
 
         footer img {
-            height: 80px;
+            height: 90px;
             margin: 0 auto 2rem;
-            filter: drop-shadow(0 0 20px var(--glow));
+            filter: drop-shadow(0 0 25px var(--glow)) brightness(1.1);
         }
 
         footer p {
@@ -524,8 +653,8 @@
     <nav>
         <div class="nav-container">
             <div class="logo-section">
-                <img src="images/Logo2.jpeg" alt="Seeds of Sound Logo" onerror="this.style.display='none'">
-                <span class="logo-text">🎧 The Resonant Five</span>
+                <img src="images/Logo2.jpeg" alt="Bishop's CS Club Logo" onerror="this.style.display='none'">
+                <span class="logo-text">The Resonant Five</span>
             </div>
             <div class="nav-links">
                 <a href="#home">Home</a>
@@ -544,7 +673,7 @@
             <div class="grid-overlay"></div>
         </div>
         <div class="hero-content">
-            <h1>🎧 SEEDS OF SOUND</h1>
+            <h1>SEEDS OF SOUND</h1>
             <div class="hero-subtitle">Engineered by The Resonant Five</div>
             <div class="team-names">
                 <strong>Daniel James A. Carone • Masoud Rafiee • Umba Lubembele • Hugo Zamora Zorrilla • Ineza Bonté Grévy</strong>
@@ -780,7 +909,7 @@
 
     <!-- Footer -->
     <footer>
-        <img src="images/Logo2.jpeg" alt="Seeds of Sound Logo" onerror="this.style.display='none'">
+        <img src="images/Logo2.jpeg" alt="Bishop's CS Club Logo" onerror="this.style.display='none'">
         <p>&copy; 2025 Bishop's University Computer Science Club — The Resonant Five</p>
         <p style="margin-top: 1rem;"><strong>The Resonant Five:</strong> Masoud Rafiee • Daniel James A. Carone • Umba Lubembele • Hugo Zamora Zorrilla • Ineza Bonté Grévy</p>
         <p style="margin-top: 0.5rem;">Concept & Vision: Imen Djendli (Arts Administration) • Dr. Vivian Valencia (Sustainable Agriculture & Climate Action)</p>
