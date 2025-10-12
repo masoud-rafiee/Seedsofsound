@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seeds of Sound | 5-EYES Engineering</title>
+    <title>🎧 Seeds of Sound | The Resonant Five Engineering</title>
     <style>
         * {
             margin: 0;
@@ -164,13 +164,33 @@
             text-shadow: 0 0 40px var(--glow);
         }
 
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
         .hero p {
-            font-size: clamp(1rem, 2vw, 1.5rem);
+            font-size: clamp(1rem, 2vw, 1.3rem);
             color: var(--text-muted);
             margin-bottom: 2rem;
-            max-width: 700px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .team-names {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(124, 58, 237, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(124, 58, 237, 0.3);
         }
 
         .cta-btn {
@@ -231,6 +251,15 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .tagline {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: -2rem auto 3rem;
+            font-style: italic;
+        }
+
         /* Feature Cards */
         .feature-grid {
             display: grid;
@@ -285,6 +314,26 @@
         .feature-card ul {
             margin-left: 1.5rem;
             line-height: 1.8;
+        }
+
+        strong {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Collaboration Section */
+        .collab-box {
+            background: rgba(6, 182, 212, 0.05);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .collab-box h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
         }
 
         /* Team Section */
@@ -474,8 +523,8 @@
     <nav>
         <div class="nav-container">
             <div class="logo-section">
-                <img src="Logo2.jpeg" alt="Bishop's CS Club Shield" onerror="this.style.display='none'">
-                <span class="logo-text">5-EYES</span>
+                <img src="images/Logo2.jpeg" alt="Seeds of Sound Logo" onerror="this.style.display='none'">
+                <span class="logo-text">🎧 The Resonant Five</span>
             </div>
             <div class="nav-links">
                 <a href="#home">Home</a>
@@ -490,12 +539,16 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-bg">
-            <img src="hero-phone.jpeg" alt="Team with Phone" onerror="this.style.display='none'">
+            <img src="images/hero-phone.jpeg" alt="Team with Phone" onerror="this.style.display='none'">
             <div class="grid-overlay"></div>
         </div>
         <div class="hero-content">
-            <h1>SEEDS OF SOUND</h1>
-            <p>Engineered by the 5-EYES of Bishop's University Computer Science Club — Transforming vintage technology into interactive storytelling devices</p>
+            <h1>🎧 SEEDS OF SOUND</h1>
+            <div class="hero-subtitle">Engineered by The Resonant Five</div>
+            <div class="team-names">
+                <strong>Daniel James A. Carone • Masoud Rafiee • Umba Lubembele • Hugo Zamora Zorrilla • Ineza Bonté Grévy</strong>
+            </div>
+            <p>Five engineers from <strong>Bishop's University Computer Science Club</strong> transforming vintage technology into interactive storytelling devices through <strong>innovative software, hardware, and firmware engineering</strong></p>
             <a href="#contact" class="cta-btn"><span>Partner With Us →</span></a>
         </div>
     </section>
@@ -503,29 +556,38 @@
     <!-- About Section -->
     <section id="about">
         <div class="container">
-            <h2 class="section-title">Engineered by the 5-EYES</h2>
+            <h2 class="section-title">From Concept to Circuit</h2>
+            <p class="tagline">Engineered, Coded, and Perfected by The Resonant Five</p>
+            
             <p style="text-align: center; font-size: 1.2rem; max-width: 900px; margin: 0 auto 3rem; color: var(--text-muted);">
-                We, the 5-EYES of the Bishop's University Computer Science Club — <strong>Masoud Rafiee, Daniel James A. Carone, Umba Lubembele, Hugo Zamora Zorrilla, and Ineza Bonté</strong> — are the creators and engineers behind Seeds of Sound.
+                <strong>Seeds of Sound</strong> is one of our <strong>technically realized projects</strong> — a fusion of <strong>engineering and art</strong>. Conceived conceptually by <strong>Imen Djendli</strong> (Fine Arts Administration) and <strong>Dr. Vivian Valencia</strong> (Sustainable Agriculture & Climate Action), the project was <strong>fully engineered, coded, and constructed</strong> by <strong>The Resonant Five</strong> of the <strong>Bishop's University Computer Science Club</strong>.
             </p>
             
             <div class="feature-grid">
                 <div class="feature-card">
                     <h3>🔧 Full-Stack Engineering</h3>
-                    <p>We designed, built, and programmed the entire system from scratch — crafting all software, hardware, and firmware to transform vintage rotary telephones into interactive storytelling devices.</p>
+                    <p>Through our <strong>software, hardware, and firmware</strong>, we transformed vintage rotary telephones into immersive storytelling devices powered by <strong>custom Raspberry Pi systems</strong> and <strong>original codebases</strong>. Each unit plays recorded reflections from students, farmers, and dreamers — blending analog design with modern computation.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🎛️ Custom Embedded Systems</h3>
-                    <p>Each phone houses a custom Raspberry Pi-based embedded system, running original proprietary code we developed to control playback, interface logic, and sensor detection.</p>
+                    <h3>⚡ Technical Innovation</h3>
+                    <p>This installation demonstrates our <strong>engineering discipline, creativity, and dedication</strong> — the outcome of <strong>hundreds of volunteer hours</strong> in <strong>circuit design, embedded programming, signal logic, and iterative testing</strong>.</p>
                 </div>
                 <div class="feature-card">
-                    <h3>🌍 From Campus to Rome</h3>
-                    <p>Dr. Vivian Valencia, together with Masoud Rafiee and Imen Djendli, will present The First Supper — featuring Seeds of Sound — at the World Food Forum 2025 in Rome.</p>
+                    <h3>🌍 Global Impact</h3>
+                    <p><strong>Seeds of Sound</strong> is part of <strong>The First Supper</strong> installation presented at the <strong>World Food Forum 2025</strong> (Rome, FAO), showcasing how <strong>technology, storytelling, and creativity</strong> can drive public engagement and social change.</p>
                 </div>
             </div>
 
-            <div style="margin-top: 4rem; text-align: center;">
-                <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-muted); max-width: 900px; margin: 0 auto;">
-                    When the handset is lifted, the device plays a curated mosaic of voices — students, farmers, athletes, and dreamers — sharing stories about food, memory, and the future. Our engineering turns abstract ideas into living, tactile experiences, demonstrating how Computer Science and creativity can humanize technology.
+            <div class="collab-box">
+                <h3>A Transdisciplinary Collaboration</h3>
+                <p><strong>Seeds of Sound</strong> bridges departments across Bishop's University — <strong>Computer Science, Natural Sciences & Mathematics, Fine Arts Administration,</strong> and <strong>Sustainable Agriculture & Climate Action</strong>.</p>
+                <p style="margin-top: 1rem;">The project was developed under the vision of <strong>Imen Djendli</strong> (Arts Administration, BU Arts Festival) and <strong>Dr. Vivian Valencia</strong> (Associate Professor & Research Chair in Sustainable Agriculture and Climate Action, Environment, Agriculture and Geography). Support came from <strong>Dr. Russell Butler</strong> (Chair, Computer Science), <strong>Dr. Valerio Faraoni</strong> (Dean, Natural Sciences & Mathematics), and <strong>Mrs. Nanci Chagnon</strong> (Secretary to the Dean).</p>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: center; padding: 2rem; background: rgba(245, 158, 11, 0.1); border-radius: 15px; border: 1px solid rgba(245, 158, 11, 0.3);">
+                <h3 style="color: var(--accent); margin-bottom: 1rem; font-size: 1.8rem;">🚀 Open to Larger Collaborations</h3>
+                <p style="max-width: 800px; margin: 0 auto; color: var(--text-muted);">
+                    We remain open to <strong>larger collaborations, research partnerships, and future art-tech installations</strong> that explore the intersection of <strong>engineering, creativity, and human experience</strong>.
                 </p>
             </div>
         </div>
@@ -534,10 +596,13 @@
     <!-- Team Section -->
     <section id="team" style="background: var(--surface);">
         <div class="container">
-            <h2 class="section-title">The 5-EYES Team</h2>
+            <h2 class="section-title">The Resonant Five</h2>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 900px; margin: 0 auto 2rem; color: var(--text-muted);">
+                Students who made the <strong>software, hardware and firmware from scratch</strong>, volunteering countless efforts and time to bring this project to life.
+            </p>
             
             <div class="gallery" style="margin-bottom: 4rem;">
-                <img src="team.jpeg" alt="Full Team" onerror="this.style.display='none'" style="grid-column: 1 / -1; height: 400px;">
+                <img src="images/team.jpeg" alt="Full Team" onerror="this.style.display='none'" style="grid-column: 1 / -1; height: 400px;">
             </div>
 
             <div class="team-grid">
@@ -606,7 +671,7 @@
                 </div>
 
                 <div class="team-card">
-                    <h4>Ineza Bonté</h4>
+                    <h4>Ineza Bonté Grévy</h4>
                     <p class="role">User Experience & Storytelling</p>
                     <div class="team-links">
                         <a href="https://www.linkedin.com/in/inezabonte" target="_blank" rel="noopener">
@@ -621,13 +686,6 @@
                     </div>
                 </div>
             </div>
-
-            <div style="margin-top: 4rem; text-align: center;">
-                <h3 style="font-size: 1.8rem; margin-bottom: 2rem; color: var(--secondary);">Interdisciplinary Collaboration</h3>
-                <p style="max-width: 900px; margin: 0 auto; color: var(--text-muted);">
-                    While the initial concept emerged from the Arts Administration program, the project was realized entirely through the technical innovation of the Bishop's University Computer Science Club team. Support came from Dr. Russell Butler (Chair, Computer Science), Dr. Valerio Faraoni (Dean, Natural Sciences and Mathematics), Mrs. Nanci Chagnon (Secretary to the Dean), and Dr. Vivian Valencia (Research Chair in Sustainable Agriculture and Climate Action).
-                </p>
-            </div>
         </div>
     </section>
 
@@ -637,9 +695,9 @@
             <h2 class="section-title">Technical Documentation</h2>
             
             <div class="gallery">
-                <img src="wiring1.jpeg" alt="Wiring Setup" onerror="this.style.display='none'">
-                <img src="wiring2.jpeg" alt="Hardware Assembly" onerror="this.style.display='none'">
-                <img src="wiring3.jpeg" alt="Prototyping" onerror="this.style.display='none'">
+                <img src="images/wiring1.jpeg" alt="Wiring Setup" onerror="this.style.display='none'">
+                <img src="images/wiring2.jpeg" alt="Hardware Assembly" onerror="this.style.display='none'">
+                <img src="images/wiring3.jpeg" alt="Prototyping" onerror="this.style.display='none'">
             </div>
 
             <div class="feature-grid" style="margin-top: 3rem;">
@@ -693,7 +751,7 @@
     <!-- Contact Section -->
     <section id="contact" style="background: var(--surface);">
         <div class="container">
-            <h2 class="section-title">Partner With the 5-EYES</h2>
+            <h2 class="section-title">Partner With The Resonant Five</h2>
             <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto 3rem; color: var(--text-muted);">
                 Ready to collaborate on breakthrough IoT, robotics, AI, or sustainable technology projects? Let's build the future together.
             </p>
@@ -721,10 +779,10 @@
 
     <!-- Footer -->
     <footer>
-        <img src="Logo2.jpeg" alt="Bishop's CS Club" onerror="this.style.display='none'">
-        <p>&copy; 2025 Bishop's University Computer Science Club — The 5-EYES Team</p>
-        <p style="margin-top: 1rem;">Masoud Rafiee • Daniel James A. Carone • Umba Lubembele • Hugo Zamora Zorrilla • Ineza Bonté</p>
-        <p style="margin-top: 0.5rem;">Collaborators: Imen Djendli (Arts) • Dr. Vivian Valencia (Sustainable Agriculture)</p>
+        <img src="images/Logo2.jpeg" alt="Seeds of Sound Logo" onerror="this.style.display='none'">
+        <p>&copy; 2025 Bishop's University Computer Science Club — The Resonant Five</p>
+        <p style="margin-top: 1rem;"><strong>The Resonant Five:</strong> Masoud Rafiee • Daniel James A. Carone • Umba Lubembele • Hugo Zamora Zorrilla • Ineza Bonté Grévy</p>
+        <p style="margin-top: 0.5rem;">Concept & Vision: Imen Djendli (Arts Administration) • Dr. Vivian Valencia (Sustainable Agriculture & Climate Action)</p>
         <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--accent);">🌟 From concept to global stage — Student-led technology elevating art and imagination</p>
     </footer>
 
