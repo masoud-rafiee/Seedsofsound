@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Seeds of Sound Installation</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="logo">
+        <a href="index.html"
+          ><img src="images/Logo2.jpeg" alt="Bishop's CS Club logo" onerror="this.style.display='none'"
+        /></a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="seeds.html">Seeds of Sound</a>
+        <a href="tech.html">Build Guide</a>
+        <a href="firstsupper.html">The First Supper</a>
+        <a href="team.html">Team</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <button id="dark-toggle" class="dark-toggle">Dark Mode</button>
+    </nav>
+
+    <!-- Hero section for Seeds of Sound page -->
+    <section class="hero">
+      <video src="videos/seeds.mp4" autoplay loop muted playsinline poster="images/wiring2.jpeg"></video>
+      <div class="overlay">
+        <h1>Seeds of Sound Installation</h1>
+        <p>
+          An evocative archive of voices and memories housed within a
+          repurposed rotary phone.
+        </p>
+      </div>
+    </section>
+
+    <!-- Installation Details -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Installation Overview</h2>
+        <p style="font-size: 1.1rem; line-height: 1.8; max-width: 900px; margin: 0 auto;">
+          Seeds of Sound invites visitors to "pick up the archive" of
+          collective voices, memories and food reflections. This interactive
+          sculpture uses a vintage rotary phone connected to a Raspberry Pi
+          to play random recordings from our community archive. The
+          technology is hidden inside the telephone, preserving its
+          nostalgia while delivering crisp, high‑fidelity sound.
+        </p>
+      </div>
+    </section>
+
+    <!-- The Final Installation -->
+    <section style="background: var(--surface-color);">
+      <div class="container">
+        <h2 class="section-title">The Installation in Action</h2>
+        <p style="text-align: center; color: var(--muted-text-color); max-width: 800px; margin: 0 auto 2rem; font-size: 1.05rem;">
+          From campus exhibitions to the World Food Forum 2025 in Rome.
+        </p>
+        
+        <div class="large-gallery">
+          <img src="images/the_final_project_pic.jpeg" alt="Final Seeds of Sound installation" onerror="this.style.display='none'" />
+          <img src="images/onCampus.jpeg" alt="Installation on Bishop's campus" onerror="this.style.display='none'" />
+          <img src="images/onCampus2.jpeg" alt="Campus exhibition display" onerror="this.style.display='none'" />
+          <img src="images/MAIN_TEAM(1).JPG" alt="Team with installation" onerror="this.style.display='none'" />
+          <img src="images/MAIN_TEAM.JPEG" alt="The Resonant Five team" onerror="this.style.display='none'" />
+          <img src="images/team.jpeg" alt="Team presentation" onerror="this.style.display='none'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Hardware Setup Section -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Hardware Setup</h2>
+        <div class="feature-card" style="max-width: 900px; margin: 0 auto;">
+          <ul style="line-height: 2;">
+            <li><strong>Vintage rotary telephone</strong> wired to a Raspberry Pi Zero 2 W</li>
+            <li><strong>Audio archive</strong> stored on microSD card (WAV/MP3 format)</li>
+            <li><strong>High‑quality DAC and amplifier</strong> driving the handset speaker</li>
+            <li><strong>Hook switch sensor</strong> detects when the receiver is lifted</li>
+            <li><strong>Discreet power supply</strong> with optional battery pack capability</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prototyping & Engineering -->
+    <section style="background: var(--surface-color);">
+      <div class="container">
+        <h2 class="section-title">Prototyping &amp; Circuit Engineering</h2>
+        <p style="text-align: center; color: var(--muted-text-color); max-width: 800px; margin: 0 auto 2rem; font-size: 1.05rem;">
+          Hundreds of hours of circuit design, testing, and iterative refinement.
+        </p>
+        
+        <div class="hardware-gallery">
+          <img src="images/wiring1.jpeg" alt="Circuit wiring close-up with testing probes" onerror="this.style.display='none'" />
+          <img src="images/wiring2.jpeg" alt="Team working on phone wiring" onerror="this.style.display='none'" />
+          <img src="images/wiring3.jpeg" alt="Hardware prototyping session" onerror="this.style.display='none'" />
+          <img src="images/wiring4.jpeg" alt="Final circuit configuration" onerror="this.style.display='none'" />
+          <img src="images/while_working.jpeg" alt="Engineering work session" onerror="this.style.display='none'" />
+          <img src="images/while_working.JPEG" alt="Circuit testing" onerror="this.style.display='none'" />
+          <img src="images/while_working(3).JPEG" alt="Component assembly" onerror="this.style.display='none'" />
+          <img src="images/while_working(4).JPEG" alt="Team collaboration" onerror="this.style.display='none'" />
+          <img src="images/while_working(5).JPEG" alt="Hardware integration" onerror="this.style.display='none'" />
+          <img src="images/while_working(6).JPEG" alt="Testing and debugging" onerror="this.style.display='none'" />
+          <img src="images/while_working(6).DJPEG" alt="Circuit verification" onerror="this.style.display='none'" />
+          <img src="images/while_working--_2_.jpeg" alt="Final assembly" onerror="this.style.display='none'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Functionality Section -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">How It Works</h2>
+        <div class="feature-card" style="max-width: 900px; margin: 0 auto;">
+          <ul style="line-height: 2;">
+            <li>
+              <strong>Lift the receiver</strong> — The Raspberry Pi detects the hook switch and randomly plays
+              one audio file from the archive
+            </li>
+            <li><strong>Listen to stories</strong> — Each recording shares memories, reflections, and dreams about food and culture</li>
+            <li><strong>Hang up to stop</strong> — Playback immediately stops when the handset is replaced</li>
+            <li><strong>Next interaction</strong> — Each time you lift the receiver, a new random recording plays</li>
+            <li><strong>Passive experience</strong> — This is a listening-only installation; no recording feature for participants</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Analog Reflection Section -->
+    <section style="background: var(--surface-color);">
+      <div class="container">
+        <h2 class="section-title">Analog Reflection: The Seed Book</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+          <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            Beside the phone sits a handmade book crafted from recycled paper
+            pulp embedded with seeds. Visitors can handwrite their
+            reflections, memories or pledges about food futures.
+          </p>
+          <p style="font-size: 1.05rem; line-height: 1.8; color: var(--muted-text-color);">
+            Once the exhibition concludes, these pages can be planted,
+            transforming words into living growth — a poetic metaphor for the
+            futures we nurture together.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Implementation -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Technical Implementation</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <h3>🔧 Software Engineering</h3>
+            <ul>
+              <li>Custom Python scripts for audio playback control</li>
+              <li>GPIO-based hook switch detection</li>
+              <li>Random track selection algorithm</li>
+              <li>Seamless audio file format conversion</li>
+            </ul>
+          </div>
+          
+          <div class="feature-card">
+            <h3>⚡ Hardware Design</h3>
+            <ul>
+              <li>Raspberry Pi integration into vintage phone casing</li>
+              <li>Custom DAC and amplifier circuit design</li>
+              <li>Power management for extended operation</li>
+              <li>Speaker retrofitting and audio optimization</li>
+            </ul>
+          </div>
+          
+          <div class="feature-card">
+            <h3>🎯 System Reliability</h3>
+            <ul>
+              <li>Rigorous stress testing (100+ lift/hang cycles)</li>
+              <li>Power-efficient design for multi-day exhibitions</li>
+              <li>Fail-safe error handling and recovery</li>
+              <li>Optional battery backup capability</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section style="background: var(--surface-color);">
+      <div class="container">
+        <h2 class="section-title">Project Timeline</h2>
+        <ul class="timeline" style="max-width: 800px; margin: 0 auto;">
+          <li><strong>September 18, 2024:</strong> Project kickoff — finalized technical specs and assigned team responsibilities</li>
+          <li><strong>September 25, 2024:</strong> Prototype testing — initial Raspberry Pi setup and audio playback verification</li>
+          <li><strong>October 5, 2024:</strong> Final review and packaging for international transport to Rome</li>
+          <li><strong>October 10, 2024:</strong> Departure from Montreal (YUL) to World Food Forum in Rome</li>
+          <li><strong>October 14-18, 2024:</strong> Live exhibition at World Food Forum 2025, FAO Headquarters, Rome</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Deliverables Section -->
+    <section>
+      <div class="container">
+        <h2 class="section-title">Project Deliverables</h2>
+        <div class="feature-card" style="max-width: 900px; margin: 0 auto;">
+          <ul style="line-height: 2;">
+            <li>
+              <strong>Fully programmed Raspberry Pi</strong> with rotary phone audio player ready for exhibition
+            </li>
+            <li>
+              <strong>Visually authentic design</strong> with all electronics concealed inside vintage casing
+            </li>
+            <li>
+              <strong>Complete technical documentation</strong> including setup guide, troubleshooting, and maintenance instructions
+            </li>
+            <li>
+              <strong>Curated audio archive</strong> of voices, stories, and reflections about food futures
+            </li>
+            <li>
+              <strong>Exhibition-ready installation</strong> tested for reliability and public interaction
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Celebration Photos -->
+    <section style="background: var(--surface-color);">
+      <div class="container">
+        <h2 class="section-title">Celebrating Success</h2>
+        <p style="text-align: center; color: var(--muted-text-color); max-width: 800px; margin: 0 auto 2rem; font-size: 1.05rem;">
+          Marking the completion of Seeds of Sound and its journey to Rome.
+        </p>
+        
+        <div class="gallery">
+          <img src="images/celebrated_final_Project_Masoud.JPEG" alt="Project completion celebration - Masoud" onerror="this.style.display='none'" />
+          <img src="images/celebrated_final_Project_Umba.JPEG" alt="Project completion celebration - Umba" onerror="this.style.display='none'" />
+          <img src="images/previous_team.jpeg" alt="Team collaboration moment" onerror="this.style.display='none'" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <img src="images/Logo2.jpeg" alt="Bishop's CS Club Logo" onerror="this.style.display='none'" />
+      <p>
+        &copy; 2025 Bishop's University Computer Science Club. All rights
+        reserved.
+      </p>
+      <p>
+        <strong>CS Club members and contributors:</strong> Masoud Rafiee, Daniel Anastasio
+        Carone, Umba Lubembele, Hugo Erick Zamora Zorrilla, Ineza Bonté
+        Grévy. <strong>Art Department collaborators:</strong> Imen Djendli. <strong>Sustainable Agriculture:</strong> Dr. Vivian
+        Valencia.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

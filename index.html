@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BU CS Club | Technicality Behind the Scenes of Seeds of Sound</title>
+      <link rel="icon" type="image/jpeg" href="Images/Logo.jpeg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #7c3aed;
+            --primary-dark: #5b21b6;
+            --secondary: #06b6d4;
+            --accent: #f59e0b;
+            --bg-dark: #0a0118;
+            --bg-darker: #050010;
+            --text: #f3f4f6;
+            --text-muted: #9ca3af;
+            --surface: #1a1229;
+            --glow: rgba(124, 58, 237, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Enhanced Futuristic Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 1, 24, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+            box-shadow: 0 4px 30px rgba(124, 58, 237, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            position: relative;
+        }
+
+        .logo-section img {
+            height: 65px;
+            width: auto;
+            filter: drop-shadow(0 0 15px var(--glow)) brightness(1.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        .logo-section img:hover {
+            filter: drop-shadow(0 0 25px rgba(124, 58, 237, 0.6)) brightness(1.2);
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, #fff 0%, var(--secondary) 50%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 30px var(--glow);
+            position: relative;
+        }
+
+        .logo-text::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-section:hover .logo-text::after {
+            opacity: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.15), transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(6, 182, 212, 0.15), transparent 50%),
+                linear-gradient(180deg, var(--bg-darker), var(--bg-dark));
+        }
+
+        .hero-bg img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            filter: grayscale(20%) brightness(0.8);
+        }
+
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(124, 58, 237, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124, 58, 237, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff 0%, var(--secondary) 50%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px var(--glow)); }
+            50% { filter: drop-shadow(0 0 40px var(--glow)); }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .team-names {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 700;
+            color: var(--text);
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(124, 58, 237, 0.15);
+            border-radius: 15px;
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.2);
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1.2rem 3.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 0 40px var(--glow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease 0.8s backwards;
+        }
+
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .cta-btn:hover::before {
+            opacity: 1;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 50px rgba(124, 58, 237, 0.5);
+        }
+
+        .cta-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--text), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .tagline {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin: -2rem auto 3rem;
+            font-style: italic;
+        }
+
+        /* Enhanced Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.15), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(124, 58, 237, 0.4);
+            border-color: rgba(124, 58, 237, 0.6);
+        }
+
+        .feature-card:hover::before,
+        .feature-card:hover::after {
+            opacity: 1;
+        }
+
+        .feature-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p, .feature-card ul {
+            position: relative;
+            z-index: 1;
+            color: var(--text-muted);
+        }
+
+        .feature-card ul {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        strong {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Collaboration Section */
+        .collab-box {
+            background: rgba(6, 182, 212, 0.08);
+            border: 1px solid rgba(6, 182, 212, 0.4);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(6, 182, 212, 0.2);
+        }
+
+        .collab-box h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(6, 182, 212, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+        }
+
+        .team-card:hover {
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 0 15px 40px var(--glow);
+            border-color: rgba(124, 58, 237, 0.6);
+        }
+
+        .team-card h4 {
+            color: var(--primary);
+            margin: 1rem 0 0.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-card .role {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .team-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .team-links a:hover {
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .linkedin-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Image Gallery - Enhanced */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px var(--glow);
+            border-color: rgba(124, 58, 237, 0.6);
+        }
+
+        /* Large Image Gallery for Team/Development Photos */
+        .large-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .large-gallery img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 2px solid rgba(124, 58, 237, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .large-gallery img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 50px var(--glow);
+            border-color: rgba(124, 58, 237, 0.6);
+        }
+
+        /* Hardware Gallery - Grid for Circuit/Wiring Images */
+        .hardware-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .hardware-gallery img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid rgba(6, 182, 212, 0.4);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 16px rgba(6, 182, 212, 0.2);
+        }
+
+        .hardware-gallery img:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(6, 182, 212, 0.4);
+            border-color: rgba(6, 182, 212, 0.8);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto 0;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            background: var(--bg-dark);
+            color: var(--text);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 25px var(--glow);
+            background: rgba(26, 18, 41, 0.5);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 30px var(--glow);
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 50px var(--glow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-darker);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
+        footer img {
+            height: 90px;
+            margin: 0 auto 2rem;
+            filter: drop-shadow(0 0 25px var(--glow)) brightness(1.1);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .logo-section img {
+                height: 50px;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            .gallery img, .hardware-gallery img {
+                height: 220px;
+            }
+
+            .large-gallery img {
+                height: 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo-section">
+                <img src="Images/Logo2.jpeg" alt="Bishop's CS Club Logo" onerror="this.style.display='none'">
+                <span class="logo-text">The Resonant Five</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#team">Team</a>
+                <a href="#hardware">Hardware</a>
+                <a href="#development">Development</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <img src="Images/MAIN_TEAM.JPEG" alt="Team with Phone" onerror="this.style.display='none'">
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1><br><br><br><br><br>SEEDS OF SOUND</h1>
+            <div class="hero-subtitle">Engineered by The Resonant Five</div>
+            <div class="team-names">
+            <strong>
+            Daniel James A. Carone<br>
+            Masoud Rafiee<br>
+            Umba Lubembele<br>
+            Hugo Zamora Zorrilla<br>
+            Ineza Bonté Grévy
+            </strong>
+            </div>
+            <p>Five engineers from <strong>Bishop's University Computer Science Club</strong> transforming vintage technology into interactive storytelling devices through <strong>innovative software, hardware, and firmware engineering</strong></p>
+            <a href="#contact" class="cta-btn"><span>Partner With Us →</span></a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">From Concept to Circuit</h2>
+            <p class="tagline">Engineered, Coded, and Perfected by The Resonant Five</p>
+            
+            <p style="text-align: center; font-size: 1.2rem; max-width: 900px; margin: 0 auto 3rem; color: var(--text-muted);">
+                <strong>Seeds of Sound</strong> is one of our <strong>technically realized projects</strong> — a fusion of <strong>engineering and art</strong>. Conceived conceptually by <strong>Imen Djendli</strong> (Fine Arts Administration) and <strong>Dr. Vivian Valencia</strong> (Sustainable Agriculture & Climate Action), the project was <strong>fully engineered, coded, and constructed</strong> by <strong>The Resonant Five</strong> of the <strong>Bishop's University Computer Science Club</strong>.
+            </p>
+                <p style="text-align:center; font-size:1.1rem; max-width:900px; margin:2rem auto; color:var(--text-muted);">
+                Under the creative direction of <strong>Imen Djendli</strong> (Arts Administration, conceptual lead) and 
+                <strong>Dr. Vivian Valencia</strong> (Sustainable Agriculture & Climate Action, research vision), 
+                this project aims to <strong>connect youth, food systems, and cultural storytelling</strong> through technology. 
+                The ultimate goal is to let participants “pick up the archive” — listening to 
+                collective voices, memories, and reflections — while linking digital interaction 
+                to <strong>seed-based, biodegradable art installations</strong> that symbolize renewal and sustainability.
+                </p>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h3>🔧 Full-Stack Engineering</h3>
+                    <p>Through our <strong>software, hardware, and firmware</strong>, we transformed vintage rotary telephones into immersive storytelling devices powered by <strong>custom Raspberry Pi systems</strong> and <strong>original codebases</strong>. Each unit plays recorded reflections from students, farmers, and dreamers — blending analog design with modern computation.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>⚡ Technical Innovation</h3>
+                    <p>This installation demonstrates our <strong>engineering discipline, creativity, and dedication</strong> — the outcome of <strong>hundreds of volunteer hours</strong> in <strong>circuit design, embedded programming, signal logic, and iterative testing</strong>.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>🌍 Global Impact</h3>
+                    <p><strong>Seeds of Sound</strong> is part of <strong>The First Supper</strong> installation presented at the <strong>World Food Forum 2025</strong> (Rome, FAO), showcasing how <strong>technology, storytelling, and creativity</strong> can drive public engagement and social change.</p>
+                </div>
+            </div>
+
+            <div class="collab-box">
+                <h3>A Transdisciplinary Collaboration</h3>
+                <p><strong>Seeds of Sound</strong> bridges departments across Bishop's University — <strong>Computer Science, Natural Sciences & Mathematics, Fine Arts Administration,</strong> and <strong>Sustainable Agriculture & Climate Action</strong>.</p>
+                <p style="margin-top: 1rem;">The project was developed under the vision of <strong>Imen Djendli</strong> (Arts Administration, BU Arts Festival) and <strong>Dr. Vivian Valencia</strong> (Associate Professor & Research Chair in Sustainable Agriculture and Climate Action, Environment, Agriculture and Geography). </p>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: center; padding: 2rem; background: rgba(245, 158, 11, 0.1); border-radius: 15px; border: 1px solid rgba(245, 158, 11, 0.3);">
+                <h3 style="color: var(--accent); margin-bottom: 1rem; font-size: 1.8rem;">🚀 Open to Larger Collaborations</h3>
+                <p style="max-width: 800px; margin: 0 auto; color: var(--text-muted);">
+                    We remain open to <strong>larger collaborations, research partnerships, and future art-tech installations</strong> that explore the intersection of <strong>engineering, creativity, and human experience</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" style="background: var(--surface);">
+        <div class="container">
+            <h2 class="section-title">The Resonant Five</h2>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 900px; margin: 0 auto 2rem; color: var(--text-muted);">
+                Students who made the <strong>software, hardware and firmware from scratch</strong>, volunteering countless efforts and time to bring this project to life.
+            </p>
+            
+            <!-- Team Photos Gallery -->
+            <div class="large-gallery">
+                <img src="Images/MAIN_TEAM(1).JPG" alt="Team Photo 1" onerror="this.style.display='none'">
+                <img src="Images/MAIN_TEAM.JPEG" alt="Team Photo 2" onerror="this.style.display='none'">
+                <img src="Images/celebrated_final_Project_Masoud.JPEG" alt="Final Project Celebration - Masoud" onerror="this.style.display='none'">
+                <img src="Images/celebrated_final_Project_Umba.JPEG" alt="Final Project Celebration - Umba" onerror="this.style.display='none'">
+                <img src="Images/previous_team.jpeg" alt="Previous Team Photo" onerror="this.style.display='none'">
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <h4>Masoud Rafiee</h4>
+                    <p class="role">Hardware Integration & Project Lead</p>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/masoud-rafiee" target="_blank" rel="noopener">
+                            <svg class="linkedin-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 18.5h-2.75v-9h2.75v9zm-1.37-10.23c-.88 0-1.59-.71-1.59-1.59s.71-1.59 1.59-1.59 1.59.71 1.59 1.59-.71 1.59-1.59 1.59zm12.37 10.23h-2.76v-4.57c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.64h-2.76v-9h2.65v1.23h.04c.37-.71 1.27-1.46 2.62-1.46 2.79 0 3.31 1.84 3.31 4.23v5z"/></svg>
+                            LinkedIn
+                        </a>
+                        <span style="color: var(--text-muted);">•</span>
+                        <a href="mailto:mrafiee22@ubishops.ca">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.065l-11.995-8.06h23.99l-11.995 8.06zm0 2.282l-12-8.13v14.783h24v-14.783l-12 8.13z"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <h4>Daniel James A. Carone</h4>
+                    <p class="role">Software Development & Audio Programming</p>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/daniel-james-a-carone-a11323385" target="_blank" rel="noopener">
+                            <svg class="linkedin-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 18.5h-2.75v-9h2.75v9zm-1.37-10.23c-.88 0-1.59-.71-1.59-1.59s.71-1.59 1.59-1.59 1.59.71 1.59 1.59-.71 1.59-1.59 1.59zm12.37 10.23h-2.76v-4.57c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.64h-2.76v-9h2.65v1.23h.04c.37-.71 1.27-1.46 2.62-1.46 2.79 0 3.31 1.84 3.31 4.23v5z"/></svg>
+                            LinkedIn
+                        </a>
+                        <span style="color: var(--text-muted);">•</span>
+                        <a href="mailto:dcarone22@ubishops.ca">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.065l-11.995-8.06h23.99l-11.995 8.06zm0 2.282l-12-8.13v14.783h24v-14.783l-12 8.13z"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <h4>Umba Lubembele</h4>
+                    <p class="role">Circuit Design & Testing</p>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/umba-lubembele-b08232338" target="_blank" rel="noopener">
+                            <svg class="linkedin-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 18.5h-2.75v-9h2.75v9zm-1.37-10.23c-.88 0-1.59-.71-1.59-1.59s.71-1.59 1.59-1.59 1.59.71 1.59 1.59-.71 1.59-1.59 1.59zm12.37 10.23h-2.76v-4.57c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.64h-2.76v-9h2.65v1.23h.04c.37-.71 1.27-1.46 2.62-1.46 2.79 0 3.31 1.84 3.31 4.23v5z"/></svg>
+                            LinkedIn
+                        </a>
+                        <span style="color: var(--text-muted);">•</span>
+                        <a href="mailto:ulubembele22@ubishops.ca">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.065l-11.995-8.06h23.99l-11.995 8.06zm0 2.282l-12-8.13v14.783h24v-14.783l-12 8.13z"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <h4>Hugo Zamora Zorrilla</h4>
+                    <p class="role">Audio Curation & Documentation</p>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/hugo-zamora-z" target="_blank" rel="noopener">
+                            <svg class="linkedin-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 18.5h-2.75v-9h2.75v9zm-1.37-10.23c-.88 0-1.59-.71-1.59-1.59s.71-1.59 1.59-1.59 1.59.71 1.59 1.59-.71 1.59-1.59 1.59zm12.37 10.23h-2.76v-4.57c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.64h-2.76v-9h2.65v1.23h.04c.37-.71 1.27-1.46 2.62-1.46 2.79 0 3.31 1.84 3.31 4.23v5z"/></svg>
+                            LinkedIn
+                        </a>
+                        <span style="color: var(--text-muted);">•</span>
+                        <a href="mailto:hzamora22@ubishops.ca">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.065l-11.995-8.06h23.99l-11.995 8.06zm0 2.282l-12-8.13v14.783h24v-14.783l-12 8.13z"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <div class="team-card">
+                    <h4>Ineza Bonté Grévy</h4>
+                    <p class="role">User Experience & Storytelling</p>
+                    <div class="team-links">
+                        <a href="https://www.linkedin.com/in/inezabonte" target="_blank" rel="noopener">
+                            <svg class="linkedin-icon" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11.75 18.5h-2.75v-9h2.75v9zm-1.37-10.23c-.88 0-1.59-.71-1.59-1.59s.71-1.59 1.59-1.59 1.59.71 1.59 1.59-.71 1.59-1.59 1.59zm12.37 10.23h-2.76v-4.57c0-1.09-.02-2.49-1.52-2.49-1.52 0-1.75 1.19-1.75 2.42v4.64h-2.76v-9h2.65v1.23h.04c.37-.71 1.27-1.46 2.62-1.46 2.79 0 3.31 1.84 3.31 4.23v5z"/></svg>
+                            LinkedIn
+                        </a>
+                        <span style="color: var(--text-muted);">•</span>
+                        <a href="mailto:ibonte22@ubishops.ca">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 13.065l-11.995-8.06h23.99l-11.995 8.06zm0 2.282l-12-8.13v14.783h24v-14.783l-12 8.13z"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hardware & Circuit Design Section -->
+    <section id="hardware">
+        <div class="container">
+            <h2 class="section-title">Hardware & Circuit Engineering</h2>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 900px; margin: 0 auto 2rem; color: var(--text-muted);">
+                Behind-the-scenes look at the <strong>circuit design, wiring, prototyping, and hardware integration</strong> that powers Seeds of Sound.
+            </p>
+
+            <div class="hardware-gallery">
+                <img src="Images/while_working(3).JPEG" alt="Circuit Work Session 1" onerror="this.style.display='none'">
+                <img src="Images/while_working(5).JPEG" alt="Circuit Work Session 2" onerror="this.style.display='none'">
+                <img src="Images/while_working(6).JPEG" alt="Hardware Assembly" onerror="this.style.display='none'">
+                <img src="Images/while_working.JPEG" alt="Team Working on Electronics" onerror="this.style.display='none'">
+                <img src="Images/wiring1.jpeg" alt="Detailed Wiring View 1" onerror="this.style.display='none'">
+                <img src="Images/wiring2.jpeg" alt="Detailed Wiring View 2" onerror="this.style.display='none'">
+                <!--img src="Images/wiring3.jpeg" alt="Component Integration" onerror="this.style.display='none'">-->
+                <img src="Images/wiring4.jpeg" alt="Final Wiring Configuration" onerror="this.style.display='none'">
+                <img src="Images/while_working--_2_.jpeg" alt="Testing Phase" onerror="this.style.display='none'">
+            </div>
+
+            <div class="feature-grid" style="margin-top: 4rem;">
+                <div class="feature-card">
+                    <h3>⚡ Systems Setup</h3>
+                    <p><strong>Purpose:</strong> A vintage rotary telephone, re-engineered with a Raspberry Pi Zero 2 W, plays audio recordings from an onboard archive when the receiver is lifted.</p>
+                    <ul style="margin-top: 1rem; line-height: 1.8;">
+                        <li>Connect USB-C power cable to 5V 2A adapter</li>
+                        <li>Wait for startup beep confirmation</li>
+                        <li>Lift receiver to trigger random recording</li>
+                        <li>Hanging up instantly stops playback</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🔧 Troubleshooting</h3>
+                    <ul style="line-height: 1.8;">
+                        <li><strong>No beep:</strong> Check USB-C plug, use 5V 2A charger</li>
+                        <li><strong>No sound:</strong> Firmly seat handset on/off switch</li>
+                        <li><strong>Static/distortion:</strong> Check speaker terminals, adjust gain</li>
+                        <li><strong>Won't start:</strong> Re-flash image from backup microSD</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📡 Bluetooth Protocol</h3>
+                    <p><strong>For file transfer & updates:</strong></p>
+                    <ul style="margin-top: 1rem; line-height: 1.8;">
+                        <li>Open rear panel for mini HDMI port</li>
+                        <li>Connect display and keyboard</li>
+                        <li>Enable Bluetooth via terminal</li>
+                        <li>Transfer audio to /home/pi/audio/</li>
+                        <li>Supported: .wav, .mp3 (44.1 kHz)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Process Section -->
+    <section id="development" style="background: var(--surface);">
+        <div class="container">
+            <h2 class="section-title">Development Journey</h2>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 900px; margin: 0 auto 2rem; color: var(--text-muted);">
+                From initial prototypes to final deployment — the <strong>iterative engineering process</strong> that brought Seeds of Sound to life.
+            </p>
+
+            <div class="gallery">
+                <img src="Images/the_final_project_pic.jpeg" alt="Final Project Showcase" onerror="this.style.display='none'">
+                <img src="Images/while_working(4).JPEG" alt="Team Collaboration" onerror="this.style.display='none'">
+                <img src="Images/wiring3.jpeg" alt="Wiring Integration" onerror="this.style.display='none'">
+            </div>
+
+            <div style="margin-top: 4rem; padding: 2.5rem; background: rgba(124, 58, 237, 0.08); border-radius: 20px; border: 1px solid rgba(124, 58, 237, 0.3);">
+                <h3 style="color: var(--accent); margin-bottom: 1.5rem; font-size: 1.8rem; text-align: center;">🛡️ Technical Highlights</h3>
+                <ul style="line-height: 2; color: var(--text-muted); max-width: 900px; margin: 0 auto;">
+                    <li><strong>Custom Raspberry Pi firmware</strong> with audio playback automation</li>
+                    <li><strong>Hook-switch detection</strong> using GPIO and hardware interrupts</li>
+                    <li><strong>Power management</strong> optimized for multi-day exhibitions</li>
+                    <li><strong>Audio signal processing</strong> with DAC integration for high-fidelity output</li>
+                    <li><strong>Modular design</strong> enabling easy maintenance and updates</li>
+                    <li><strong>Robust error handling</strong> for unattended operation in public spaces</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Partner With The Resonant Five</h2>
+            <p style="text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto 3rem; color: var(--text-muted);">
+                Ready to collaborate on breakthrough IoT, robotics, AI, or sustainable technology projects? Let's build the future together.
+            </p>
+            
+            <form action="https://formsubmit.co/mrafiee22@ubishops.ca" method="POST" class="contact-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required rows="6"></textarea>
+                
+                <input type="hidden" name="_subject" value="New Partnership Inquiry - Seeds of Sound">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="thank-you.html">
+                <input type="text" name="_honey" style="display:none">
+                <input type="hidden" name="_captcha" value="true">
+                
+                <button type="submit">Send Message →</button>
+            </form>
+
+            <div style="margin-top: 4rem; text-align: center;">
+                <p style="color: var(--text-muted); margin-bottom: 1rem;">📧 Email: <a href="mailto:csclub@ubishops.ca" style="color: var(--secondary); text-decoration: none;">csclub@ubishops.ca</a></p>
+                <p style="color: var(--text-muted);">🔗 <a href="https://www.linkedin.com/company/bu-csc" target="_blank" rel="noopener" style="color: var(--secondary); text-decoration: none;">LinkedIn: Bishop's University CS Club</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <img src="Images/Logo2.jpeg" alt="Bishop's CS Club Logo" onerror="this.style.display='none'">
+        <p>&copy; 2025 Bishop's University Computer Science Club — The Resonant Five</p>
+        <p style="margin-top: 1rem;"><strong>The Resonant Five:</strong> Masoud Rafiee • Daniel James A. Carone • Umba Lubembele • Hugo Zamora Zorrilla • Ineza Bonté Grévy</p>
+        <p style="margin-top: 0.5rem;">Concept & Vision: Imen Djendli (Arts Administration) • Dr. Vivian Valencia (Sustainable Agriculture & Climate Action)</p>
+        <p style="margin-top:1rem; color:var(--text-muted); font-size:0.9rem;">
+        <p style="margin-top:1rem;color:var(--text-muted);font-size:0.9rem;">
+            Masoud Rafiee, the Project’s Technical Presenter from the <strong>Bishop’s University Computer Science Club</strong>, 
+            at the <strong>United Nations World Food Forum</strong> in Rome, Italy. 
+            Travel support was generously provided by 
+            <strong>Dr. Russell Butler</strong> (Chair, Computer Science), 
+            <strong>Dr. Valerio Faraoni</strong> (Dean, Natural Sciences & Mathematics), and 
+            <strong>Mrs. Nanci Chagnon</strong> (Secretary to the Dean).
+        </p>
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--accent);">🌟 From concept to global stage — Student-led technology elevating art and imagination</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImg = document.querySelector('.hero-bg img');
+            if (heroImg) {
+                heroImg.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .team-card, .gallery img, .hardware-gallery img, .large-gallery img').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
